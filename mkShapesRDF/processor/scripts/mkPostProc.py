@@ -9,7 +9,8 @@ import tabulate
 
 #: condorDir is the path to use for condor submission, user might want to change it -> edit ``mkPostProc.py``
 condorDir = (
-    "/".join(os.path.abspath(os.path.dirname(__file__)).split("/")[:-1]) + "/condor"
+    #"/".join(os.path.abspath(os.path.dirname(__file__)).split("/")[:-1]) + "/condor"
+    "/afs/cern.ch/user/m/mihawksw/private/Run3/condor"
 )
 
 #: eosDir and defaultRedirector are defined in Sites_cfg.py, user might want to modify them

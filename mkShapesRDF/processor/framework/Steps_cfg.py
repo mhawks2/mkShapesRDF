@@ -494,7 +494,7 @@ Steps = {
         "do4MC": False,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LumiMask",
-        "declare": "lumiMask = lambda : LumiMask('/afs/cern.ch/work/s/sblancof/private/Run3Analysis/mkShapesRDF/mkShapesRDF/processor/data/certification/Cert_Collisions2022_355100_362760_Golden.json')",
+        "declare": "lumiMask = lambda : LumiMask('/eos/user/m/mihawksw/Run3/mkShapesRDF/mkShapesRDF/processor/data/certification/Cert_Collisions2022_355100_362760_Golden.json')",
         "module": "lumiMask()",
     },
     "PromptParticlesGenVars": {
@@ -943,7 +943,7 @@ Steps = {
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.Snapshot",
         "declare": "snapshot = lambda : Snapshot( \
-                tmpOutputFilename=RPLME_OUTPUTFILENAMETMP+'/RPLME_OUTPUTFILENAME', \
+                tmpOutputFilename='RPLME_OUTPUTFILENAMETMP/RPLME_OUTPUTFILENAME', \
                 columns=['*'], \
                 eosPath='RPLME_EOSPATH', outputFilename='RPLME_OUTPUTFILENAME', \
                 includeVariations=True, splitVariations=False, storeNominals=True )",
