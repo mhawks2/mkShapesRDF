@@ -137,22 +137,22 @@ class JMECalculator(Module):
                     jcp_unc = ROOT.JetCorrectorParameters(txtUnc, s)
                     calcMET.addJESUncertainty(s, jcp_unc)
 
-                if self.do_JER and "Puppi" not in MET:
+                if self.do_JER and "Puppi" in MET:
                     # Smear jets, with JER uncertainty
                     calcMET.setSmearing(
                         txtPtRes,
                         txtSF,
                         True,
-                        True,
-                        0.2,
-                        3.0,  # decorrelate for different regions
+                        False,
+                        -1.0,
+                        -1.0,  # decorrelate for different regions
                     )  # use hybrid recipe, matching parameters
                     calcMET.setIsT1SmearedMET(True)
 
                 jesSources = calcMET.available()
                 print("DEBUG module")
                 skip = 1
-                if self.do_JER and "Puppi" not in MET:
+                if self.do_JER and "Puppi" in MET:
                     skip += 6 * 2
                 # first are JERs, last two are unclustered unc.
                 jesSources = jesSources[skip:-2][::2]
@@ -276,9 +276,9 @@ class JMECalculator(Module):
                     txtPtRes,
                     txtSF,
                     True,
-                    True,
-                    0.2,
-                    3.0,  # decorrelate for different regions
+                    False,
+                    -1.0,
+                    -1.0,  # decorrelate for different regions
                 )  # use hybrid recipe, matching parameters
             jesSources = calc.available()
             skip = 1
