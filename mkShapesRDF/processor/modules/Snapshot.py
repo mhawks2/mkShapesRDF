@@ -45,6 +45,7 @@ class Snapshot(Module):
         includeVariations=True,
         splitVariations=True,
         storeNominals=True,
+        outputMap={}
     ):
         super().__init__("Snapshot")
         self.tmpOutputFilename = tmpOutputFilename
@@ -56,6 +57,7 @@ class Snapshot(Module):
         self.includeVariations = includeVariations
         self.splitVariations = splitVariations
         self.storeNominals = storeNominals
+        self.outputMap = outputMap
 
     @staticmethod
     def CopyFromInputFiles(outputFilename, inputFiles):
@@ -73,8 +75,12 @@ class Snapshot(Module):
 
         """
         # copy other information from inputFiles into the outputfile
-        mergedOutput = f"merged_{outputFilename}"
-
+        file_name = outputFilename.split('/')[-1]
+        if outputFilename.split(file_name)[0] != "":
+            mergedOutput = outputFilename.split(file_name)[0]+f"merged_{file_name}"
+        else:
+            mergedOutput = f"merged_{file_name}"
+            
         proc = subprocess.Popen(
             f'hadd -fk {mergedOutput} {" ".join(inputFiles)}',
             shell=True,
@@ -92,7 +98,10 @@ class Snapshot(Module):
         trees = list(set(trees).difference(set(["Events"])))
         f2.cd()
         for key in trees:
-            f.Get(key).Write()
+            if 'tag' in key:
+                f.Get(key).Clone().Write()
+            else:
+                f.Get(key).CloneTree().Write()
         f2.Close()
         f.Close()
 
@@ -116,25 +125,53 @@ class Snapshot(Module):
             The ``mRDF`` object to use for snapshot
 
         """
+
         # create separate files for each variation and tag
-        for variationName in df.variations:
-            for tag in df.variations[variationName]["tags"]:
-                tmp_varied_cols = df.GetVariedColumns_oneVariation(
-                    self.saveColumns, variationName, tag
-                )
-                outputFilename = self.tmpOutputFilename.split(".")
-                outputFilename[-2] += "__" + variationName + "_" + tag
-                outputFilename = ".".join(outputFilename)
-                self.snapshots.append(
-                    [
-                        variationName + "_" + tag,
-                        tmp_varied_cols,
-                        outputFilename,
-                        False,
-                        self.eosPath + "__" + variationName + "_" + tag,
-                        self.outputFilename,
-                    ]
-                )
+        if self.outputMap != {}:
+            for variationName in self.outputMap.keys():
+                for tag in df.variations[self.outputMap[variationName][0]]["tags"]:
+                    tmp_varied_cols = []
+
+                    for variationNameSpecific in self.outputMap[variationName]:
+
+                        tmp_varied_cols.extend(
+                            df.GetVariedColumns_oneVariation(
+                                self.saveColumns, variationNameSpecific, tag
+                            )
+                        )
+
+                    outputFilename = self.tmpOutputFilename.split(".")
+                    outputFilename[-2] += "__" + variationName + "_" + tag
+                    outputFilename = ".".join(outputFilename)
+                    self.snapshots.append(
+                        [
+                            variationName + "_" + tag,
+                            tmp_varied_cols,
+                            outputFilename,
+                            False,
+                            self.eosPath + "__" + variationName + tag + "_suffix",
+                            self.outputFilename,
+                        ]
+                    )
+        else:
+            for variationName in df.variations:
+                for tag in df.variations[variationName]["tags"]:
+                    tmp_varied_cols = df.GetVariedColumns_oneVariation(
+                        self.saveColumns, variationName, tag
+                    )
+                    outputFilename = self.tmpOutputFilename.split(".")
+                    outputFilename[-2] += "__" + variationName + "_" + tag
+                    outputFilename = ".".join(outputFilename)
+                    self.snapshots.append(
+                        [
+                            variationName + "_" + tag,
+                            tmp_varied_cols,
+                            outputFilename,
+                            False,
+                            self.eosPath + "__" + variationName + tag + "_suffix",
+                            self.outputFilename,
+                        ]
+                    )
 
     def StoreNominals(self, df):
         """
@@ -255,8 +292,11 @@ class Snapshot(Module):
             self.StoreNominalsAndVariations(df)
 
         for snapshot in self.snapshots:
+            if "nominal" in snapshot[0]:
+                isNominal = True
+            else:
+                isNominal = False
             _cols = sorted(list(set(snapshot[1])))
-            print("Final list of variables for snapshot", snapshot[0], _cols)
             opts = ROOT.RDF.RSnapshotOptions()
             opts.fLazy = True
             opts.fMode = "UPDATE"
@@ -266,7 +306,7 @@ class Snapshot(Module):
             values.append(
                 [
                     "snapshot",
-                    df.Snapshot("Events", snapshot[2], _cols, opts),
+                    df.Snapshot("Events", snapshot[2], _cols, isNominal, opts),
                     snapshot[2:],
                 ]
             )
