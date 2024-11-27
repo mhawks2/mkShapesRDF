@@ -15,4 +15,6 @@ Clone the repository:
 
     cd mkShapesRDF
 
+    git checkout tags/Run3_production_v1
+
     source install.sh
