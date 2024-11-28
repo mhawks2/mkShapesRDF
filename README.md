@@ -18,3 +18,21 @@ Clone the repository:
     git checkout tags/Run3_production_v1
 
     source install.sh
+
+### Setup the environment
+
+After you install the framework, and every time you log-in, you have to setup the environment in order to use it:
+
+    cd <your_base_directory>/mkShapesRDF/
+
+	source start.sh
+
+### Post-process nanoAOD files
+
+The first step is always to setup the environment. After that, you need to create a proxy to access files in the grid:
+
+    voms-proxy-init --voms cms -valid 192:0
+
+The actual command to post-process files will look like the following:
+
+    mkPostProc -o 0 Summer22EE_130x_nAODv12_Full2022v12 -s MCl2loose2022EEv12__MCCorr2022EEv12JetScaling__l2tight -T <sample_name>
