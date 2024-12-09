@@ -12,33 +12,33 @@ Samples['VBFHToWWTo2L2Nu_M125'] = {
 
 ##### ggWW !!!! 
 
-#Samples['GluGlutoContintoWWtoENuENu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoENuMuNu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoENuTauNu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoMuNuENu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoMuNuMuNu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoMuNuTauNu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoTauNuENu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoTauNuMuNu'] = {
-#    'nanoAOD' :''
-#}
-#Samples['GluGlutoContintoWWtoTauNuTauNu'] = {
-#    'nanoAOD' :''
-#}
+Samples['GluGlutoContintoWWtoENuENu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoENuENu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoENuMuNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoENuMuNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoENuTauNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoENuTauNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoMuNuENu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoMuNuENu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoMuNuMuNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoMuNuMuNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoMuNuTauNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoMuNuTauNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoTauNuENu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoTauNuENu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoTauNuMuNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoTauNuMuNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
+Samples['GluGlutoContintoWWtoTauNuTauNu'] = {
+    'nanoAOD' :'/GluGlutoContintoWWtoTauNuTauNu_TuneCP5_13p6TeV_mcfm701-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM'
+}
 
 ##### WZ !!!!!
 Samples['WZTo3LNu'] = {

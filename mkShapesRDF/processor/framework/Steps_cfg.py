@@ -500,7 +500,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonFiller_HWWMVA",
-        "declare": 'leptonFill_hwwMVA = lambda : LeptonFiller_HWWMVA()',
+        "declare": 'leptonFill_hwwMVA = lambda : LeptonFiller_HWWMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA/")',
         "module": "leptonFill_hwwMVA()",
     },
     "lepFiller_tthMVA": {
@@ -508,7 +508,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonFiller_ttHMVA",
-        "declare": 'leptonFill_tthMVA = lambda : LeptonFiller_ttHMVA()',
+        "declare": 'leptonFill_tthMVA = lambda : LeptonFiller_ttHMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA/")',
         "module": "leptonFill_tthMVA()",
     },
     "lepSel": {
@@ -533,7 +533,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.JetSelMask",
-        "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_CMSSW",True)',
+        "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_FW","RPLME_CMSSW",True)',
         "module": "jetSelMask()",
     },
     "jetSelMask": {
@@ -541,7 +541,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.JetSelMask",
-        "declare": 'jetSelMask = lambda : JetSelMaskBCD(2,"loose",15.0,4.7,False,"RPLME_CMSSW")',
+        "declare": 'jetSelMask = lambda : JetSelMaskBCD(2,"loose",15.0,4.7,False,"RPLME_FW","RPLME_CMSSW")',
         "module": "jetSelMask()",
     },
     "fakeSelMC": {
@@ -557,7 +557,7 @@ Steps = {
         "do4MC": False,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LumiMask",
-        "declare": 'lumiMask = lambda : LumiMask("RPLME_CMSSW")',
+        "declare": 'lumiMask = lambda : LumiMask("RPLME_LUMI")',
         "module": "lumiMask()",
     },    
     "PromptParticlesGenVars": {
@@ -629,7 +629,7 @@ Steps = {
         "do4MC"   : True,
         "do4Data" : False,
         "import"  : "mkShapesRDF.processor.modules.JMECalculator",
-        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_FW", "RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
         do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True)',
         "module"  : "jmeCalculator()",
     },

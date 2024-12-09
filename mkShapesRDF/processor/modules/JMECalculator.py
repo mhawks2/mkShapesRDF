@@ -10,6 +10,7 @@ class JMECalculator(Module):
 
     def __init__(
         self,
+        base_path,
         year,
         jet_object,
         jes_unc,
@@ -60,15 +61,11 @@ class JMECalculator(Module):
         self.store_nominal = store_nominal
         self.store_variations = store_variations
 
-        self.base_path = ""
+        self.base_path = base_path
         self.json = ""
         self.JEC_era = ""
         self.JER_era = ""
         self.jsonFileSmearingTool = ""
-        if "processor" in os.path.dirname(os.path.dirname(__file__)):
-            self.base_path = (
-                os.path.dirname(os.path.dirname(__file__)).split("processor")[0]
-            )
         
         if year in JetMakerCfg.keys():
             self.json = self.base_path + JetMakerCfg[year]["jet_jerc"]
