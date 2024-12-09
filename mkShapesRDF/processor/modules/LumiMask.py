@@ -3,14 +3,9 @@ import json
 import os
 
 class LumiMask(Module):
-    def __init__(self, inPath):
+    def __init__(self, basePath, inPath):
         super().__init__("LumiMask")
-        self.base_path = ""
-        if "processor" in os.path.dirname(os.path.dirname(__file__)):
-            self.base_path = (
-                os.path.dirname(os.path.dirname(__file__)).split("processor")[0]
-            )
-
+        self.base_path = basePath
         self.jsonFile = self.base_path + inPath
 
     def runModule(self, df, values):

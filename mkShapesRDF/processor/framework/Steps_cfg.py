@@ -557,7 +557,7 @@ Steps = {
         "do4MC": False,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LumiMask",
-        "declare": 'lumiMask = lambda : LumiMask("RPLME_LUMI")',
+        "declare": 'lumiMask = lambda : LumiMask("RPLME_FW","RPLME_LUMI")',
         "module": "lumiMask()",
     },    
     "PromptParticlesGenVars": {
