@@ -5,7 +5,7 @@ import os
 correctionlib.register_pyroot_binding()
 
 class JetSelMask(Module):
-    def __init__(self, jetId, puJetId, minPt, maxEta, UL2016fix=False, base_path="", year="",eventMask=False):
+    def __init__(self, jetId, puJetId, minPt, maxEta, UL2016fix=False, year="",eventMask=False):
         super().__init__("JetSelMask")
         self.jetId = jetId
         self.puJetId = puJetId
@@ -15,11 +15,9 @@ class JetSelMask(Module):
         self.UL2016fix = UL2016fix
         self.eventMask = eventMask
 
-        self.base_path = base_path
-        
         if year in JetMakerCfg.keys():
             self.doMask = True
-            self.pathToJson = self.base_path + JetMakerCfg[year]["vetomap"]
+            self.pathToJson = JetMakerCfg[year]["vetomap"]
             self.globalTag = JetMakerCfg[year]["vetokey"]        
         
     def runModue(self, df, values):

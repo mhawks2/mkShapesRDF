@@ -533,7 +533,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.JetSelMask",
-        "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_FW","RPLME_CMSSW",True)',
+        "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_CMSSW",True)',
         "module": "jetSelMask()",
     },
     "jetSelMask": {
@@ -541,7 +541,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.JetSelMask",
-        "declare": 'jetSelMask = lambda : JetSelMaskBCD(2,"loose",15.0,4.7,False,"RPLME_FW","RPLME_CMSSW")',
+        "declare": 'jetSelMask = lambda : JetSelMaskBCD(2,"loose",15.0,4.7,False,"RPLME_CMSSW")',
         "module": "jetSelMask()",
     },
     "fakeSelMC": {
@@ -629,7 +629,7 @@ Steps = {
         "do4MC"   : True,
         "do4Data" : False,
         "import"  : "mkShapesRDF.processor.modules.JMECalculator",
-        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_FW", "RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
         do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True)',
         "module"  : "jmeCalculator()",
     },
