@@ -126,6 +126,7 @@ ElectronWP = {
                          "ROOT::VecOps::abs(Electron_eta) < 2.5",
                          "Electron_cutBased >= 2",
                          "Electron_tthMVA > 0.90",
+                         "Electron_convVeto",
                      ],
                      "ROOT::VecOps::abs(Electron_eta) <= 1.479": [
                          "ROOT::VecOps::abs(Electron_dxy) < 0.05",
