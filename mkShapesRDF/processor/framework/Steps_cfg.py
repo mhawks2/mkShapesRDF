@@ -508,7 +508,7 @@ Steps = {
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonFiller_ttHMVA",
-        "declare": 'leptonFill_tthMVA = lambda : LeptonFiller_ttHMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA/")',
+        "declare": 'leptonFill_tthMVA = lambda : LeptonFiller_ttHMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA", "Muon-mvaTTH.2022EE.weights.xml", "Electron-mvaTTH.2022EE.weights_mvaISO.xml)',
         "module": "leptonFill_tthMVA()",
     },
     "lepSel": {
