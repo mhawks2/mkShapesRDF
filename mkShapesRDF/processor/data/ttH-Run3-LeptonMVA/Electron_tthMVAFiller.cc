@@ -41,6 +41,7 @@ public:
     
     reader = new TMVA::Reader( "!Color:Silent" );
 
+    /* commenting out unneded spectators
     reader->AddSpectator("event", &event);
     reader->AddSpectator("Electron_mvaTTH", &Electron_mvaTTH);
     reader->AddSpectator("Electron_miniPFRelIso_all", &Electron_miniPFRelIso_all);
@@ -49,6 +50,7 @@ public:
     reader->AddSpectator("Electron_genPartFlav", &Electron_genPartFlav);
     reader->AddSpectator("Electron_dxy", &Electron_dxy);
     reader->AddSpectator("Electron_dz", &Electron_dz);
+    */
 
     reader->AddVariable("Electron_pt",                                                                                &electron_pt);
     reader->AddVariable("Electron_eta",                                                                               &electron_eta);
@@ -57,8 +59,8 @@ public:
     reader->AddVariable("Electron_miniRelIsoNeutral := Electron_miniPFRelIso_all - Electron_miniPFRelIso_chg",        &electron_miniRelIsoNeutral);
     reader->AddVariable("Electron_jetNDauCharged",                                                                    &electron_jetNDauCharged);
     reader->AddVariable("Electron_jetPtRelv2",                                                                        &electron_jetPtRelv2);
-    reader->AddVariable("Electron_jetPtRatio := min(1 / (1 + Electron_jetRelIso), 1.5)",                              &electron_jetPtRatio);
     reader->AddVariable("Electron_jetBTagDeepFlavB := Electron_jetIdx > -1 ? Jet_btagDeepFlavB[Electron_jetIdx] : 0", &electron_jetBTagDeepFlavB);
+    reader->AddVariable("Electron_jetPtRatio := min(1 / (1 + Electron_jetRelIso), 1.5)",                              &electron_jetPtRatio);
     reader->AddVariable("Electron_sip3d",                                                                             &electron_sip3d);
     reader->AddVariable("Electron_log_dxy := log(abs(Electron_dxy))",                                                 &electron_log_dxy);
     reader->AddVariable("Electron_log_dz  := log(abs(Electron_dz))",                                                  &electron_log_dz);

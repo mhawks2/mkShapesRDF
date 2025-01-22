@@ -44,6 +44,7 @@ public:
     
     reader = new TMVA::Reader( "!Color:Silent" );
 
+    /* commenting out unneded spectators
     reader->AddSpectator("event", &event);
     reader->AddSpectator("Muon_mvaTTH", &Muon_mvaTTH);
     reader->AddSpectator("Muon_miniPFRelIso_all", &Muon_miniPFRelIso_all);
@@ -56,6 +57,7 @@ public:
     reader->AddSpectator("Muon_looseId", &Muon_looseIdBis);
     reader->AddSpectator("Muon_dxy", &Muon_dxy);
     reader->AddSpectator("Muon_dz", &Muon_dz);
+    */
     
     reader->AddVariable("Muon_pt",                                                                                &muon_pt);
     reader->AddVariable("Muon_eta",                                                                               &muon_eta);
@@ -64,8 +66,8 @@ public:
     reader->AddVariable("Muon_miniRelIsoNeutral := Muon_miniPFRelIso_all - Muon_miniPFRelIso_chg",                &muon_miniRelIsoNeutral);
     reader->AddVariable("Muon_jetNDauCharged",                                                                    &muon_jetNDauCharged);
     reader->AddVariable("Muon_jetPtRelv2",                                                                        &muon_jetPtRelv2);
-    reader->AddVariable("Muon_jetPtRatio := min(1 / (1 + Muon_jetRelIso), 1.5)",                                  &muon_jetPtRatio);
     reader->AddVariable("Muon_jetBTagDeepFlavB := Muon_jetIdx > -1 ? Jet_btagDeepFlavB[Muon_jetIdx] : 0",         &muon_jetBTagDeepFlavB);
+    reader->AddVariable("Muon_jetPtRatio := min(1 / (1 + Muon_jetRelIso), 1.5)",                                  &muon_jetPtRatio);
     reader->AddVariable("Muon_sip3d",                                                                             &muon_sip3d);
     reader->AddVariable("Muon_log_dxy := log(abs(Muon_dxy))",                                                     &muon_log_dxy);
     reader->AddVariable("Muon_log_dz  := log(abs(Muon_dz))",                                                      &muon_log_dz);
