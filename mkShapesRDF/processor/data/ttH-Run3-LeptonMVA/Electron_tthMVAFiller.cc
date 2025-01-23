@@ -41,14 +41,14 @@ public:
     
     reader = new TMVA::Reader( "!Color:Silent" );
 
-    reader->AddSpectator("event", &event);
-    reader->AddSpectator("Electron_mvaTTH", &Electron_mvaTTH);
-    reader->AddSpectator("Electron_miniPFRelIso_all", &Electron_miniPFRelIso_all);
-    reader->AddSpectator("Electron_mvaFall17V2noIso_WPL", &Electron_mvaFall17V2noIso_WPL);
-    reader->AddSpectator("Electron_lostHits", &Electron_lostHits);
-    reader->AddSpectator("Electron_genPartFlav", &Electron_genPartFlav);
-    reader->AddSpectator("Electron_dxy", &Electron_dxy);
-    reader->AddSpectator("Electron_dz", &Electron_dz);
+    // reader->AddSpectator("event", &event);
+    // reader->AddSpectator("Electron_mvaTTH", &Electron_mvaTTH);
+    // reader->AddSpectator("Electron_miniPFRelIso_all", &Electron_miniPFRelIso_all);
+    // reader->AddSpectator("Electron_mvaFall17V2noIso_WPL", &Electron_mvaFall17V2noIso_WPL);
+    // reader->AddSpectator("Electron_lostHits", &Electron_lostHits);
+    // reader->AddSpectator("Electron_genPartFlav", &Electron_genPartFlav);
+    // reader->AddSpectator("Electron_dxy", &Electron_dxy);
+    // reader->AddSpectator("Electron_dz", &Electron_dz);
 
     reader->AddVariable("Electron_pt",                                                                                &electron_pt);
     reader->AddVariable("Electron_eta",                                                                               &electron_eta);
@@ -57,12 +57,12 @@ public:
     reader->AddVariable("Electron_miniRelIsoNeutral := Electron_miniPFRelIso_all - Electron_miniPFRelIso_chg",        &electron_miniRelIsoNeutral);
     reader->AddVariable("Electron_jetNDauCharged",                                                                    &electron_jetNDauCharged);
     reader->AddVariable("Electron_jetPtRelv2",                                                                        &electron_jetPtRelv2);
-    reader->AddVariable("Electron_jetPtRatio := min(1 / (1 + Electron_jetRelIso), 1.5)",                              &electron_jetPtRatio);
     reader->AddVariable("Electron_jetBTagDeepFlavB := Electron_jetIdx > -1 ? Jet_btagDeepFlavB[Electron_jetIdx] : 0", &electron_jetBTagDeepFlavB);
+    reader->AddVariable("Electron_jetPtRatio := min(1 / (1 + Electron_jetRelIso), 1.5)",                              &electron_jetPtRatio);
     reader->AddVariable("Electron_sip3d",                                                                             &electron_sip3d);
     reader->AddVariable("Electron_log_dxy := log(abs(Electron_dxy))",                                                 &electron_log_dxy);
     reader->AddVariable("Electron_log_dz  := log(abs(Electron_dz))",                                                  &electron_log_dz);
-    reader->AddVariable("Electron_mvaFall17V2noIso",                                                                            &electron_mvaIso);
+    reader->AddVariable("Electron_mvaIso",                                                                            &electron_mvaIso);
 
     reader->BookMVA("BDTG", weightfile);
   }
@@ -80,21 +80,22 @@ on_jetPtRatio, RVecF Electron_sip3d, RVecF Electron_log_dxy, RVecF Electron_log_
 
         electron_pt = Electron_pt[i];
         electron_eta = Electron_eta[i];
-	electron_pfRelIso03_all = Electron_pfRelIso03_all[i];
-	electron_miniPFRelIso_chg = Electron_miniPFRelIso_chg[i];
-	electron_miniRelIsoNeutral = Electron_miniRelIsoNeutral[i];
-	electron_jetNDauCharged = Electron_jetNDauCharged[i];
-	electron_jetPtRelv2 = Electron_jetPtRelv2[i];
-	electron_jetBTagDeepFlavB = Electron_jetBTagDeepFlavB[i];
-	electron_jetPtRatio = Electron_jetPtRatio[i];
-	electron_sip3d = Electron_sip3d[i];
-	electron_log_dxy = Electron_log_dxy[i];
-	electron_log_dz = Electron_log_dz[i];
-	electron_mvaIso = Electron_mvaIso[i];
-	result_electron = reader->EvaluateMVA("BDTG");
-	
-	results[i] = (float)result_electron;
-	
+		electron_pfRelIso03_all = Electron_pfRelIso03_all[i];
+		electron_miniPFRelIso_chg = Electron_miniPFRelIso_chg[i];
+		electron_miniRelIsoNeutral = Electron_miniRelIsoNeutral[i];
+		electron_jetNDauCharged = Electron_jetNDauCharged[i];
+		electron_jetPtRelv2 = Electron_jetPtRelv2[i];
+		electron_jetBTagDeepFlavB = Electron_jetBTagDeepFlavB[i];
+		electron_jetPtRatio = Electron_jetPtRatio[i];
+		electron_sip3d = Electron_sip3d[i];
+		electron_log_dxy = Electron_log_dxy[i];
+		electron_log_dz = Electron_log_dz[i];
+		electron_mvaIso = Electron_mvaIso[i];
+
+		result_electron = reader->EvaluateMVA("BDTG");
+		
+		results[i] = (float)result_electron;
+		
     }
 
     //std::cout << results << std::endl;

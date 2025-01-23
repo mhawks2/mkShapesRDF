@@ -5,10 +5,12 @@ import correctionlib
 correctionlib.register_pyroot_binding()
 
 class LeptonFiller_ttHMVA(Module):
-    def __init__(self, script_path="processor/data/ttH-Run3-LeptonMVA/"):
+    def __init__(self, script_path="processor/data/ttH-Run3-LeptonMVA", mu_xml="Muon-mvaTTH.2022EE.weights.xml", ele_xml="Electron-mvaTTH.2022EE.weights_mvaISO.xml"):
         super().__init__("LeptonFiller_ttHMVA")
         self.script_path = script_path
-        
+        self.mu_xml = mu_xml
+        self.ele_xml = ele_xml
+
     def runModule(self, df, values):
 
         if not hasattr(ROOT, "getJetPtRatio"):
@@ -29,10 +31,10 @@ class LeptonFiller_ttHMVA(Module):
             )
         
         ROOT.gROOT.ProcessLineSync(f".L {self.script_path}/Muon_tthMVAFiller.cc+")
-        ROOT.gInterpreter.Declare(f'Muon_tthMVAFiller evaluateTTH_muon("{self.script_path}");')
-
+        ROOT.gInterpreter.Declare(f'Muon_tthMVAFiller evaluateTTH_muon("{self.script_path}/{self.mu_xml}");')
+        
         ROOT.gROOT.ProcessLineSync(f".L {self.script_path}/Electron_tthMVAFiller.cc+")
-        ROOT.gInterpreter.Declare(f'Electron_tthMVAFiller evaluateTTH_electron("{self.script_path}");')
+        ROOT.gInterpreter.Declare(f'Electron_tthMVAFiller evaluateTTH_electron("{self.script_path}/{self.ele_xml}");')
         
         if "Muon_log_dxy" not in df.GetColumnNames():
             df = df.Define("Muon_miniRelIsoNeutral", "Muon_miniPFRelIso_all - Muon_miniPFRelIso_chg")

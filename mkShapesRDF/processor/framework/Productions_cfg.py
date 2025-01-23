@@ -125,7 +125,7 @@ Productions = {
         "xsFile": "../framework/samples/samplesCrossSections_13p6TeV.py",
         "YRver": ["YR4", "13p6TeV"],
     },
-    # ------- 2022 MC Sumer22EE v12
+    # ------- 2022 MC Summer22EE v12
     "Summer22EE_130x_nAODv12_Full2022v12": {
         "isData": False,
         "samples": "../framework/samples/Summer22EE_130x_nAODv12.py",
