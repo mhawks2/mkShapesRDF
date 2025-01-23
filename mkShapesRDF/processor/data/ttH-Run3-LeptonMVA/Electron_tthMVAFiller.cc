@@ -41,15 +41,6 @@ public:
     
     reader = new TMVA::Reader( "!Color:Silent" );
 
-    // reader->AddSpectator("event", &event);
-    // reader->AddSpectator("Electron_mvaTTH", &Electron_mvaTTH);
-    // reader->AddSpectator("Electron_miniPFRelIso_all", &Electron_miniPFRelIso_all);
-    // reader->AddSpectator("Electron_mvaFall17V2noIso_WPL", &Electron_mvaFall17V2noIso_WPL);
-    // reader->AddSpectator("Electron_lostHits", &Electron_lostHits);
-    // reader->AddSpectator("Electron_genPartFlav", &Electron_genPartFlav);
-    // reader->AddSpectator("Electron_dxy", &Electron_dxy);
-    // reader->AddSpectator("Electron_dz", &Electron_dz);
-
     reader->AddVariable("Electron_pt",                                                                                &electron_pt);
     reader->AddVariable("Electron_eta",                                                                               &electron_eta);
     reader->AddVariable("Electron_pfRelIso03_all",                                                                    &electron_pfRelIso03_all);

@@ -32,7 +32,7 @@ class LeptonFiller_ttHMVA(Module):
         
         ROOT.gROOT.ProcessLineSync(f".L {self.script_path}/Muon_tthMVAFiller.cc+")
         ROOT.gInterpreter.Declare(f'Muon_tthMVAFiller evaluateTTH_muon("{self.script_path}/{self.mu_xml}");')
-        
+
         ROOT.gROOT.ProcessLineSync(f".L {self.script_path}/Electron_tthMVAFiller.cc+")
         ROOT.gInterpreter.Declare(f'Electron_tthMVAFiller evaluateTTH_electron("{self.script_path}/{self.ele_xml}");')
         
