@@ -64,7 +64,7 @@ public:
     reader->AddVariable("Electron_sip3d",                                                                             &electron_sip3d);
     reader->AddVariable("Electron_log_dxy := log(abs(Electron_dxy))",                                                 &electron_log_dxy);
     reader->AddVariable("Electron_log_dz  := log(abs(Electron_dz))",                                                  &electron_log_dz);
-    reader->AddVariable("Electron_mvaFall17V2noIso",                                                                            &electron_mvaIso);
+    reader->AddVariable("Electron_mvaIso",                                                                            &electron_mvaIso);
 
     reader->BookMVA("BDTG", weightfile);
   }
