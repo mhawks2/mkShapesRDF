@@ -149,7 +149,7 @@ Steps = {
             "l2Kin",
             "l3Kin",
             "l4Kin",
-            "formulasMC",
+            "formulasMC_2022EE",
             "l2tight",
             "finalSnapshot_JES",
         ]
@@ -179,7 +179,9 @@ Steps = {
             "leptonSF",
             "puW",
             "l2Kin",
-            "formulasMC",
+            "l3Kin",
+            "l4Kin",
+            "formulasMC_2022EE",
             "finalSnapshot_MC",
         ]
     },
@@ -902,6 +904,15 @@ Steps = {
         "module": "formulasMC()",
     },
     
+    "formulasMC_2022EE": {
+        "isChain": False,
+        "do4MC": True,
+        "do4Data": False,
+        "import": "mkShapesRDF.processor.modules.formulasToAdd_MC_Full2022EEv12",
+        "declare": "formulasMC = lambda : formulasToAdd_MC_Full2022EEv12()",
+        "module": "formulasMC()",
+    },
+
     "formulasMCnoSF_2022": {
         "isChain": False,
         "do4MC": True,
