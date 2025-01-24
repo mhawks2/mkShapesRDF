@@ -209,7 +209,7 @@ def main():
 
     if "/eos/user" in outputFolder:
         Path(f"{outputFolder}").mkdir(parents=True, exist_ok=True)
-        outputPath = os.path.abspath(f"/{outputFolder}")
+        outputPath = os.path.abspath(f"{outputFolder}")
         outputFileMap = f"{outputPath}/{outputFile}"
     else: 
         Path(f"{folder}/{outputFolder}").mkdir(parents=True, exist_ok=True)
