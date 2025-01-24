@@ -717,7 +717,7 @@ class l3KinProducer(Module):
         df = df.DropColumns("MET_4DV")
 
         df = df.DropColumns("ZH3l_CleanJet_4DV")
-        df = df.DropColumns("ZH3l_CleanJet_jetIdx")
+        # df = df.DropColumns("ZH3l_CleanJet_jetIdx")
         df = df.DropColumns("ZH3l_LepIdx")
         df = df.DropColumns("ZLepton1")
         df = df.DropColumns("ZLepton2")

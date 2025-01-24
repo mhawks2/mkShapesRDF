@@ -50,7 +50,7 @@ Steps = {
             "l2Kin",
             "l3Kin",
             "l4Kin",
-            "formulasMC",
+            "formulasMC_2022",
             "l2tight",
             "finalSnapshot_JES",
         ]
