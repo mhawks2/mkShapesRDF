@@ -634,9 +634,9 @@ Steps = {
         ],
     },
 
-    ##############
-    ### Chains ###
-    ##############
+    ########################
+    ### Individual steps ###
+    ########################
 
     "leptonMaker": {
         "isChain": False,
@@ -646,6 +646,7 @@ Steps = {
         "declare": "leptonMaker = lambda : LeptonMaker()",
         "module": "leptonMaker()",
     },
+
     "lepFiller_hwwMVA": {
         "isChain": False,
         "do4MC": True,
@@ -654,6 +655,8 @@ Steps = {
         "declare": 'leptonFill_hwwMVA = lambda : LeptonFiller_HWWMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA/")',
         "module": "leptonFill_hwwMVA()",
     },
+
+    # For the moment, we use the 2022EE training for all eras.
     "lepFiller_tthMVA": {
         "isChain": False,
         "do4MC": True,
@@ -662,6 +665,7 @@ Steps = {
         "declare": 'leptonFill_tthMVA = lambda : LeptonFiller_ttHMVA("RPLME_FW/processor/data/ttH-Run3-LeptonMVA", "Muon-mvaTTH.2022EE.weights.xml", "Electron-mvaTTH.2022EE.weights_mvaISO.xml")',
         "module": "leptonFill_tthMVA()",
     },
+    
     "lepSel": {
         "isChain": False,
         "do4MC": True,
@@ -670,6 +674,7 @@ Steps = {
         "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW")',
         "module": "leptonSel()",
     },
+    
     "jetSelUL": {
         "isChain": False,
         "do4MC": True,
@@ -679,6 +684,7 @@ Steps = {
         "declare": 'jetSel = lambda : JetSel(2,"loose",15.0,4.7,False)',
         "module": "jetSel()",
     },
+    
     "jetSelMaskFilter": {
         "isChain": False,
         "do4MC": True,
@@ -687,6 +693,7 @@ Steps = {
         "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_CMSSW",True)',
         "module": "jetSelMask()",
     },
+    
     "jetSelMask": {
         "isChain": False,
         "do4MC": True,
@@ -695,6 +702,7 @@ Steps = {
         "declare": 'jetSelMask = lambda : JetSelMask(2,"loose",15.0,4.7,False,"RPLME_CMSSW")',
         "module": "jetSelMask()",
     },
+    
     "fakeSelMC": {
         "isChain": False,
         "do4MC": True,
@@ -702,7 +710,8 @@ Steps = {
         "import":  "mkShapesRDF.processor.modules.FakeSelMC",
         "declare": "fakeSel = lambda : FakeSelMC()",
         "module":  "fakeSel()",
-    },    
+    },
+    
     "lumiMask": {
         "isChain": False,
         "do4MC": False,
@@ -710,7 +719,8 @@ Steps = {
         "import": "mkShapesRDF.processor.modules.LumiMask",
         "declare": 'lumiMask = lambda : LumiMask("RPLME_FW","RPLME_LUMI")',
         "module": "lumiMask()",
-    },    
+    },
+    
     "PromptParticlesGenVars": {
         "isChain": False,
         "do4MC": True,
@@ -719,6 +729,7 @@ Steps = {
         "declare": "PromptParticlesGenVars = lambda : PromptParticlesGenVarsProducer()",
         "module": "PromptParticlesGenVars()",
     },
+    
     "GenVar": {
         "isChain": False,
         "do4MC": True,
@@ -727,6 +738,7 @@ Steps = {
         "declare": "GenVar = lambda : GenVarProducer()",
         "module": "GenVar()",
     },
+    
     "GenLeptonMatch": {
         "isChain": False,
         "do4MC": True,
@@ -735,6 +747,7 @@ Steps = {
         "declare": "GenLeptonMatch = lambda : GenLeptonMatchProducer()",
         "module": "GenLeptonMatch()",
     },
+    
     "HiggsGenVars": {
         "isChain": False,
         "do4MC": True,
@@ -743,6 +756,7 @@ Steps = {
         "declare": "HiggsGenVars = lambda : HiggsGenVarsProducer()",
         "module": "HiggsGenVars()",
     },
+    
     "TopGenVars": {
         "isChain": False,
         "do4MC": True,
@@ -751,6 +765,7 @@ Steps = {
         "declare": "TopGenVars = lambda : TopGenVarsProducer()",
         "module": "TopGenVars()",
     },
+    
     "WGammaStar": {
         "isChain": False,
         "do4MC": True,
@@ -759,6 +774,7 @@ Steps = {
         "declare": "WGammaStar = lambda : WGammaStarProducer()",
         "module": "WGammaStar()",
     },
+    
     "DressedLeptons": {
         "isChain": False,
         "do4MC": True,
@@ -767,6 +783,7 @@ Steps = {
         "declare": "DressedLeptons = lambda : DressedLeptonProducer(0.3)",
         "module": "DressedLeptons()",
     },
+    
     "baseW": {
         "isChain": False,
         "do4MC": True,
@@ -775,6 +792,7 @@ Steps = {
         "declare": "baseW = lambda : BaseW(sampleName, files, xs_db, RPLME_genEventSumw)",
         "module": "baseW()",
     },
+    
     "JES_modules": {
         "isChain" : False,
         "do4MC"   : True,
@@ -784,6 +802,7 @@ Steps = {
         do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True)',
         "module"  : "jmeCalculator()",
     },
+    
     "l2Kin": {
         "isChain": False,
         "do4MC": True,
@@ -792,6 +811,7 @@ Steps = {
         "declare": "l2Kin = lambda : l2KinProducer()",
         "module": "l2Kin()",
     },
+    
     "l3Kin": {
         "isChain": False,
         "do4MC": True,
@@ -800,6 +820,7 @@ Steps = {
         "declare": "l3Kin = lambda : l3KinProducer()",
         "module": "l3Kin()",
     },
+    
     "l4Kin": {
         "isChain": False,
         "do4MC": True,
@@ -808,6 +829,7 @@ Steps = {
         "declare": "l4Kin = lambda : l4KinProducer()",
         "module": "l4Kin()",
     },
+    
     "puW": {
         "isChain": False,
         "do4MC": True,
@@ -816,6 +838,7 @@ Steps = {
         "declare": "puWeight = lambda : runDependentPuW('RPLME_CMSSW', files)",
         "module": "puWeight()",
     },
+    
     "leptonSF": {
         "isChain": False,
         "do4MC": False,
@@ -824,6 +847,7 @@ Steps = {
         "declare": "leptonSF = lambda : LeptonSF('RPLME_CMSSW')",
         "module": "leptonSF()",
     },
+    
     "formulasDATA": {
         "isChain": False,
         "do4MC": False,
@@ -832,6 +856,7 @@ Steps = {
         "declare": "formulasDATA = lambda : formulasToAdd_DATA_Full2022EEv11()",
         "module": "formulasDATA()",
     },
+    
     "formulasDATA_2022EE": {
         "isChain": False,
         "do4MC": False,
@@ -840,6 +865,7 @@ Steps = {
         "declare": "formulasDATA = lambda : formulasToAdd_DATA_Full2022EEv12()",
         "module": "formulasDATA()",
     },
+    
     "formulasDATA_2022": {
         "isChain": False,
         "do4MC": False,
@@ -848,6 +874,7 @@ Steps = {
         "declare": "formulasDATA = lambda : formulasToAdd_DATA_Full2022v12()",
         "module": "formulasDATA()",
     },
+    
     "formulasMC": {
         "isChain": False,
         "do4MC": True,
@@ -856,6 +883,7 @@ Steps = {
         "declare": "formulasMC = lambda : formulasToAdd_MC_Full2022EEv11()",
         "module": "formulasMC()",
     },
+    
     "formulasMCnoSF": {
         "isChain": False,
         "do4MC": True,
@@ -864,6 +892,7 @@ Steps = {
         "declare": "formulasMC = lambda : formulasToAdd_MCnoSF_Full2022EEv11()",
         "module": "formulasMC()",
     },
+    
     "formulasMC_2022": {
         "isChain": False,
         "do4MC": True,
@@ -872,6 +901,7 @@ Steps = {
         "declare": "formulasMC = lambda : formulasToAdd_MC_Full2022v12()",
         "module": "formulasMC()",
     },
+    
     "formulasMCnoSF_2022": {
         "isChain": False,
         "do4MC": True,
@@ -880,6 +910,7 @@ Steps = {
         "declare": "formulasMC = lambda : formulasToAdd_MCnoSF_Full2022v12()",
         "module": "formulasMC()",
     },
+    
     "formulasFAKE_2022FG": {
         "isChain": False,
         "do4MC": False,
@@ -888,6 +919,7 @@ Steps = {
         "declare": "formulasFAKE = lambda : formulasToAdd_FAKE_Full2022EEv11()",
         "module": "formulasFAKE()",
     },
+    
     "formulasFAKE_2022EE": {
         "isChain": False,
         "do4MC": False,
@@ -896,6 +928,7 @@ Steps = {
         "declare": "formulasFAKE = lambda : formulasToAdd_FAKE_Full2022EEv12()",
         "module": "formulasFAKE()",
     },
+    
     "formulasFAKE_2022": {
         "isChain": False,
         "do4MC": False,
@@ -904,6 +937,7 @@ Steps = {
         "declare": "formulasFAKE = lambda : formulasToAdd_FAKE_Full2022v12()",
         "module": "formulasFAKE()",
     },
+    
     "btagPerJet_DeepCSV_2018UL": {
         "isChain": False,
         "do4MC": True,
@@ -912,6 +946,7 @@ Steps = {
         "declare": 'btagPerJet_DeepCSV_2018UL = lambda : btagSFProducerLatinos(2018, "deepCSV", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz", ["jes","jesAbsolute","jesAbsolute_2018","jesBBEC1","jesBBEC1_2018","jesEC2","jesEC2_2018","jesFlavorQCD","jesHF","jesHF_2018","jesRelativeBal","jesRelativeSample_2018"])',
         "module": "btagPerJet_DeepCSV_2018UL()",
     },
+    
     "btagPerJet_DeepJet_2018UL": {
         "isChain": False,
         "do4MC": True,
@@ -920,6 +955,7 @@ Steps = {
         "declare": 'btagPerJet_DeepJet_2018UL = lambda : btagSFProducerLatinos(2018, "deepJet", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz", ["jes","jesAbsolute","jesAbsolute_2018","jesBBEC1","jesBBEC1_2018","jesEC2","jesEC2_2018","jesFlavorQCD","jesHF","jesHF_2018","jesRelativeBal","jesRelativeSample_2018"])',
         "module": "btagPerJet_DeepJet_2018UL()",
     },
+    
     ######## 2022 btagging SF
     ## Shape
     "btagPerJet_Summer22_DeepJet_shape": {
@@ -930,6 +966,7 @@ Steps = {
         "declare": 'btagPerJet_DeepJet_shape = lambda : btagSFProducerLatinos(2022, "deepJet", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_DeepJet_shape()",
     },
+    
     "btagPerJet_Summer22_PNet_shape": {
         "isChain": False,
         "do4MC": True,
@@ -938,6 +975,7 @@ Steps = {
         "declare": 'btagPerJet_PNet_shape = lambda : btagSFProducerLatinos(2022, "particleNet", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_PNet_shape()",
     },
+    
     "btagPerJet_Summer22_PTransformer_shape": {
         "isChain": False,
         "do4MC": True,
@@ -946,6 +984,7 @@ Steps = {
         "declare": 'btagPerJet_PTransformer_shape = lambda : btagSFProducerLatinos(2022, "robustParticleTransformer", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_PTransformer_shape()",
     },
+    
     "btagPerJet_Summer22EE_DeepJet_shape": {
         "isChain": False,
         "do4MC": True,
@@ -954,6 +993,7 @@ Steps = {
         "declare": 'btagPerJet_DeepJet_shape = lambda : btagSFProducerLatinos(2022, "deepJet", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_DeepJet_shape()",
     },
+    
     "btagPerJet_Summer22EE_PNet_shape": {
         "isChain": False,
         "do4MC": True,
@@ -962,6 +1002,7 @@ Steps = {
         "declare": 'btagPerJet_PNet_shape = lambda : btagSFProducerLatinos(2022, "particleNet", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_PNet_shape()",
     },
+    
     "btagPerJet_Summer22EE_PTransformer_shape": {
         "isChain": False,
         "do4MC": True,
@@ -970,6 +1011,7 @@ Steps = {
         "declare": 'btagPerJet_PTransformer_shape = lambda : btagSFProducerLatinos(2022, "robustParticleTransformer", ["shape"], "shape", "RPLME_FW/processor/data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz", ["jes","jesAbsoluteStat","jesAbsoluteScale","jesAbsoluteMPFBias","jesFragmentation","jesSinglePionECAL","jesSinglePionHCAL","jesFlavorQCD","jesRelativeJEREC1","jesRelativeJEREC2","jesRelativeJERHF","jesRelativePtBB","jesRelativePtEC1","jesRelativePtEC2","jesRelativePtHF","jesRelativeBal","jesRelativeSample","jesRelativeFSR","jesRelativeStatFSR","jesRelativeStatEC","jesRelativeStatHF","jesPileUpDataMC","jesPileUpPtRef","jesPileUpPtBB","jesPileUpPtEC1","jesPileUpPtEC2","jesPileUpPtHF"])',
         "module": "btagPerJet_PTransformer_shape()",
     },
+    
     ### Fixed WP
     "btagPerJet_Summer22EE_DeepJet_light": {
         "isChain": False,
@@ -979,6 +1021,7 @@ Steps = {
         "declare": 'btagPerJet_DeepJet_light = lambda : btagSFProducerLatinos(2022, "deepJet", ["L", "M", "T"], "light", "RPLME_FW/processor/data/scale_factors_BTV/Full2022EEv12/btagging_Summer22EE.json", [])',
         "module": "btagPerJet_DeepJet_light()",
     },
+    
     "btagPerJet_Summer22EE_PNet_light": {
 	"isChain": False,
 	"do4MC": True,
@@ -987,6 +1030,7 @@ Steps = {
         "declare": 'btagPerJet_PNet_light = lambda : btagSFProducerLatinos(2022, "particleNet", ["L", "M", "T"], "light", "RPLME_FW/processor/data/scale_factors_BTV/Full2022EEv12/btagging_Summer22EE.json", [])',
         "module": "btagPerJet_PNet_light()",
     },
+    
     "btagPerJet_Summer22EE_PTransformer_light": {
 	"isChain": False,
         "do4MC": True,
@@ -995,6 +1039,7 @@ Steps = {
         "declare": 'btagPerJet_PTransformer_light = lambda : btagSFProducerLatinos(2022, "robustParticleTransformer", ["L", "M", "T"], "light", "RPLME_FW/processor/data/scale_factors_BTV/Full2022EEv12/btagging_Summer22EE.json", [])',
         "module": "btagPerJet_PTransformer_light()",
     },
+    
     "trigMC": {
         "isChain": False,
         "do4MC": True,
@@ -1003,6 +1048,7 @@ Steps = {
         "declare": 'trigMC = lambda : TrigMaker("RPLME_CMSSW", isData=False, keepRunP=False)',
         "module": "trigMC()",
     },
+    
     "trigMCnoSF": {
         "isChain": False,
         "do4MC": True,
@@ -1011,6 +1057,7 @@ Steps = {
         "declare": 'trigMC = lambda : TrigMaker("RPLME_CMSSW", isData=False, keepRunP=False, computeSF=False)',
         "module": "trigMC()",
     },
+    
     "trigData": {
         "isChain": False,
         "do4MC": False,
@@ -1019,6 +1066,7 @@ Steps = {
         "declare": 'trigData = lambda : TrigMaker("RPLME_CMSSW", isData=True, keepRunP=False)',
         "module": "trigData()",
     },
+    
     "fakeW": {
         "isChain": False,
         "do4MC": False,
@@ -1027,6 +1075,7 @@ Steps = {
         "declare": "fakeW = lambda : LeptonFakeWMaker('RPLME_CMSSW')",
         "module": "fakeW()",
     },
+    
     "l2tight": {
         "isChain": False,
         "do4MC": True,
@@ -1035,6 +1084,7 @@ Steps = {
         "declare": "l2tightFilter = lambda : L2TightSelection('Full2022v12')",
         "module": "l2tightFilter()",
     },
+    
     "finalSnapshot_MC": {
         "isChain": False,
         "do4MC": True,
@@ -1047,6 +1097,7 @@ Steps = {
                 includeVariations=True, splitVariations=False, storeNominals=True )",
         "module": "snapshot()",
     },
+    
     "finalSnapshot_Variations": {
         "isChain": False,
         "do4MC": True,
@@ -1059,6 +1110,7 @@ Steps = {
                 includeVariations=True, splitVariations=True, storeNominals=False )",
         "module": "snapshot()",
     },
+    
     "finalSnapshot_DATA": {
         "isChain": False,
         "do4MC": False,
@@ -1071,6 +1123,7 @@ Steps = {
                 includeVariations=False, splitVariations=False, storeNominals=True )",
         "module": "snapshot()",
     },
+    
     "finalSnapshot_JES": {
         "isChain" : False,
         "do4MC"   : True,
@@ -1111,6 +1164,7 @@ Steps = {
     #             outputMap={'JES':['JESCorrelationGroupbJES', 'JESCorrelationGroupIntercalibration', 'JESFlavorPureQuark', 'JESFlavorPureGluon', 'JESFlavorPhotonJet', 'JESFlavorZJet', 'JESTotalNoFlavorNoTime', 'JESCorrelationGroupFlavor', 'JESTotalNoTime', 'JESTotalNoFlavor', 'JESTotal', 'JESSubTotalMC', 'JESSubTotalAbsolute', 'JESSubTotalScale', 'JESFlavorPureCharm', 'JESSubTotalPt', 'JESSubTotalPileUp', 'JESPileUpMuZero', 'JESCorrelationGroupUncorrelated', 'JESPileUpEnvelope', 'JESRelativeJERHF', 'JESRelativePtHF', 'JESRelativeJEREC2','JESSubTotalRelative', 'JESRelativeStatFSR', 'JESRelativeJEREC1', 'JESTimePtEta', 'JESFragmentation', 'JESFlavorQCD', 'JESAbsoluteMPFBias', 'JESRelativePtEC1', 'JESAbsoluteFlavMap', 'JESSinglePionECAL', 'JESAbsoluteScale', 'JESSinglePionHCAL', 'JESRelativeFSR', 'JESFlavorPureBottom', 'JESPileUpPtEC1', 'JESPileUpDataMC', 'JESAbsoluteStat', 'JESRelativePtEC2', 'JESPileUpPtEC2', 'JESRelativeBal', 'JESAbsoluteSample', 'JESRelativeSample', 'JESRelativePtBB', 'JESRelativeStatEC', 'JESRelativeStatHF', 'JESPileUpPtRef', 'JESCorrelationGroupMPFInSitu', 'JESPileUpPtBB', 'JESPileUpPtHF'], 'MET':['JESCorrelationGroupbJES', 'JESCorrelationGroupIntercalibration', 'JESFlavorPureQuark', 'JESFlavorPureGluon', 'JESFlavorPhotonJet', 'JESFlavorZJet', 'JESTotalNoFlavorNoTime', 'JESCorrelationGroupFlavor', 'JESTotalNoTime', 'JESTotalNoFlavor', 'JESTotal', 'JESSubTotalMC', 'JESSubTotalAbsolute', 'JESSubTotalScale', 'JESFlavorPureCharm', 'JESSubTotalPt', 'JESSubTotalPileUp', 'JESPileUpMuZero', 'JESCorrelationGroupUncorrelated', 'JESPileUpEnvelope', 'JESRelativeJERHF', 'JESRelativePtHF', 'JESRelativeJEREC2', 'JESSubTotalRelative', 'JESRelativeStatFSR', 'JESRelativeJEREC1', 'JESTimePtEta', 'JESFragmentation', 'JESFlavorQCD', 'JESAbsoluteMPFBias', 'JESRelativePtEC1', 'JESAbsoluteFlavMap', 'JESSinglePionECAL', 'JESAbsoluteScale', 'JESSinglePionHCAL', 'JESRelativeFSR', 'JESFlavorPureBottom', 'JESPileUpPtEC1', 'JESPileUpDataMC', 'JESAbsoluteStat', 'JESRelativePtEC2', 'JESPileUpPtEC2', 'JESRelativeBal', 'JESAbsoluteSample', 'JESRelativeSample', 'JESRelativePtBB', 'JESRelativeStatEC', 'JESRelativeStatHF', 'JESPileUpPtRef', 'JESCorrelationGroupMPFInSitu', 'JESPileUpPtBB', 'JESPileUpPtHF'],} )",
     #     "module": "snapshot()",
     # },
+
     "histogram": {
         "isChain": False,
         "do4MC": True,
