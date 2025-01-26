@@ -56,6 +56,38 @@ Steps = {
         ]
     },
 
+    "MCl1loose2022v12__MCCorr2022v12JetScaling__fakeSel": {
+        "isChain" : True,
+        "do4MC" : True,
+        "do4Data" : False,
+        "selection" : '"((nElectron+nMuon)>0)"',
+        "subTargets" : [
+            "leptonMaker",
+            "lepFiller_tthMVA",
+            "lepSel",
+            "jetSelMask",
+            "PromptParticlesGenVars",
+            "GenVar",
+            "GenLeptonMatch",
+            "HiggsGenVars",
+            "TopGenVars",
+            "WGammaStar",
+            "DressedLeptons",
+            "baseW",
+            "btagPerJet_Summer22EE_DeepJet_shape",
+            "btagPerJet_Summer22EE_PNet_shape",
+            "btagPerJet_Summer22EE_PTransformer_shape",
+            "trigMC",
+            "leptonSF",
+            "puW",
+            "JES_modules",
+            "l2Kin",
+            "formulasMC_2022",
+            "fakeSel",
+            "finalSnapshot_MC",
+        ]
+    },
+
     "DATAl2loose2022v12__l2tight": {
         "isChain" : True,
         "do4MC" : False,
@@ -93,7 +125,7 @@ Steps = {
             "l4Kin",
             "trigData",
             "formulasDATA_2022",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_DATA",
         ],
     },
@@ -223,7 +255,7 @@ Steps = {
             "l4Kin",
             "trigData",
             "formulasDATA_2022EE",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_DATA",
         ],
     },
@@ -287,7 +319,7 @@ Steps = {
             "l4Kin",
             "trigData",
             "formulasDATA_2023",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_DATA",
         ],
     },
@@ -350,7 +382,7 @@ Steps = {
             "l4Kin",
             "trigData",
             "formulasDATA_2023BPix",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_DATA",
         ],
     },
@@ -376,15 +408,16 @@ Steps = {
         ],
     },
 
-    "fakeSel": {
-        "isChain": True,
-        "do4MC": False,
-        "do4Data": True,
-        "selection": '"((MET_pt < 20 || PuppiMET_pt < 20) && mtw1 < 20)"',
-        "subTargets": [
-            "finalSnapshot_DATA",
-        ],
-    },
+    # "fakeSel": {
+    #     "isChain": True,
+    #     "do4MC": False,
+    #     "do4Data": True,
+    #     "selection": '"((MET_pt < 20 || PuppiMET_pt < 20) && mtw1 < 20)"',
+    #     "subTargets": [
+    #         "finalSnapshot_DATA",
+    #     ],
+    # },
+    
     "fakeSelKinMC": {
         "isChain": True,
         "do4MC": True,
@@ -397,10 +430,11 @@ Steps = {
             "l3Kin",
             "puW",
             "formulasMCnoSF",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_MC",
         ],
     },
+    
     "fakeW": {
         "isChain": True,
         "do4MC": False,
@@ -543,7 +577,7 @@ Steps = {
             "l2Kin",
             "puW",
             "formulasMCnoSF_2022",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_MC",
         ]
     },
@@ -569,7 +603,7 @@ Steps = {
             "l2Kin",
             "puW",
             "formulasMCnoSF_2022",
-            "fakeSelMC",
+            "fakeSel",
             "finalSnapshot_MC",
         ]
     },
@@ -705,12 +739,12 @@ Steps = {
         "module": "jetSelMask()",
     },
     
-    "fakeSelMC": {
+    "fakeSel": {
         "isChain": False,
         "do4MC": True,
         "do4Data": False,
-        "import":  "mkShapesRDF.processor.modules.FakeSelMC",
-        "declare": "fakeSel = lambda : FakeSelMC()",
+        "import":  "mkShapesRDF.processor.modules.FakeSel",
+        "declare": "fakeSel = lambda : FakeSel()",
         "module":  "fakeSel()",
     },
     
@@ -1105,7 +1139,7 @@ Steps = {
                 tmpOutputFilename=RPLME_OUTPUTFILENAMETMP+'/RPLME_OUTPUTFILENAME', \
                 columns=['*'], \
                 eosPath='RPLME_EOSPATH', outputFilename='RPLME_OUTPUTFILENAME', \
-                includeVariations=True, splitVariations=False, storeNominals=True )",
+                includeVariations=False, splitVariations=False, storeNominals=True )",
         "module": "snapshot()",
     },
     

@@ -9,6 +9,7 @@
 # D: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef#Single_top_s_channel
 # E: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/LHCHWG136TeVxsec_extrap
 # F: https://cms-gen.gitbook.io/cms-generator-central-place/about-cross-sections
+# G: https://xsecdb-xsdb-official.app.cern.ch/xsdb/
 #
 # X: reference unknown. Please provide a valid reference!
 
@@ -36,14 +37,14 @@ xs_db["VBFHToWWTo2L2Nu_M125"]    = ["xsec=0.09187", "kfact=1.000", "ref=E"] #  4
 xs_db["WW"]        = ["xsec=122.3", "kfact=1.000", "ref=X"]  ## 13 TeV values with 4% expected increase with MCFM
 xs_db["WWTo2L2Nu"] = ["xsec=12.98", "kfact=1.000", "ref=X"]  ### 122.3 * 0.1086 * 0.1086 * 9
 
-xs_db["WWTo2L2Nu_LL"] = ["xsec=0.488",  "kfact=1.000", "ref=X"]   ## 4.598 * 9 * BR(W->lnu) * BR(W->lnu) / BR(W->lnu) = 0.1086
-xs_db["WWTo2L2Nu_TT"] = ["xsec=6.266",  "kfact=1.000", "ref=X"]   ## 59.03
-xs_db["WWTo2L2Nu_LT"] = ["xsec=0.911",  "kfact=1.000", "ref=X"]   ## 8.582
-xs_db["WWTo2L2Nu_TL"] = ["xsec=0.911",  "kfact=1.000", "ref=X"]   ## 8.582
-xs_db["ggWW_LL"]      = ["xsec=0.025",  "kfact=1.000", "ref=X"]       ## 0.239
-xs_db["ggWW_TT"]      = ["xsec=0.329",  "kfact=1.000", "ref=X"]       ## 3.104
-xs_db["ggWW_LT"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"]       ## 0.08195
-xs_db["ggWW_TL"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"]       ## 0.08195
+xs_db["WWTo2L2Nu_LL"] = ["xsec=0.488",  "kfact=1.000", "ref=X"] ## 4.598 * 9 * BR(W->lnu) * BR(W->lnu) / BR(W->lnu) = 0.1086
+xs_db["WWTo2L2Nu_TT"] = ["xsec=6.266",  "kfact=1.000", "ref=X"] ## 59.03
+xs_db["WWTo2L2Nu_LT"] = ["xsec=0.911",  "kfact=1.000", "ref=X"] ## 8.582
+xs_db["WWTo2L2Nu_TL"] = ["xsec=0.911",  "kfact=1.000", "ref=X"] ## 8.582
+xs_db["ggWW_LL"]      = ["xsec=0.025",  "kfact=1.000", "ref=X"] ## 0.239
+xs_db["ggWW_TT"]      = ["xsec=0.329",  "kfact=1.000", "ref=X"] ## 3.104
+xs_db["ggWW_LT"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"] ## 0.08195
+xs_db["ggWW_TL"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"] ## 0.08195
 
 xs_db["GluGlutoContintoWWtoENuENu"]     = ["xsec=0.0688", "kfact=1.000", "ref=X"]
 xs_db["GluGlutoContintoWWtoENuMuNu"]    = ["xsec=0.0688", "kfact=1.000", "ref=X"]
@@ -93,7 +94,7 @@ xs_db["WZZ"] = ["xsec=0.06206", "kfact=1.000", "ref=X"]
 xs_db["ZZZ"] = ["xsec=0.01591", "kfact=1.000", "ref=X"]
 
 # W+Jets
-xs_db["WToLNu-2Jets"] = ["xsec=64481.58", "kfact=1.000", "ref=X"]  ## 64481.58 from SMP-22-017  ## 67710.0 from XSDB
+xs_db["WToLNu-2Jets"] = ["xsec=67710.0", "kfact=1.000", "ref=G"]
 
 # DY
 xs_db["DYJetsToLL_M-50-LO"]      = ["xsec=6275.1",  "kfact=1.000", "ref=A"] # 2091.7 * 3
