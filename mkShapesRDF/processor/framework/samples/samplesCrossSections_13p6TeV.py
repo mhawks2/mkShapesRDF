@@ -102,12 +102,34 @@ xs_db["DYto2L-2Jets_MLL-50"]     = ["xsec=6275.1",  "kfact=1.000", "ref=A"] # 20
 xs_db["DYto2L-2Jets_MLL-10to50"] = ["xsec=19982.5", "kfact=1.000", "ref=X"]
 
 # QCD
-# xs_db["QCD_Pt_15to20"]    = ["xsec=", "kfact=1.000", "ref=X"]
-# xs_db["QCD_Pt_30to50"]    = ["xsec=", "kfact=1.000", "ref=X"]
-# xs_db["QCD_HT70to100"]    = ["xsec=", "kfact=1.000", "ref=X"]
-# xs_db["QCD_HT1200to1500"] = ["xsec=", "kfact=1.000", "ref=X"]
-# xs_db["QCD_HTto2000"]     = ["xsec=", "kfact=1.000", "ref=X"]
+xs_db["QCD_PT-15to20_MuEnrichedPt5"]    = ["xsec=2960000.0", "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-20to30_MuEnrichedPt5"]    = ["xsec=2679000.0", "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-30to50_MuEnrichedPt5"]    = ["xsec=1497000.0", "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-50to80_MuEnrichedPt5"]    = ["xsec=409500.0",  "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-80to120_MuEnrichedPt5"]   = ["xsec=95130.0",   "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-120to170_MuEnrichedPt5"]  = ["xsec=22980.0",   "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-170to300_MuEnrichedPt5"]  = ["xsec=7763.0",    "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-300to470_MuEnrichedPt5"]  = ["xsec=699.1",     "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-470to600_MuEnrichedPt5"]  = ["xsec=68.24",     "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-600to800_MuEnrichedPt5"]  = ["xsec=21.37",     "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-800to1000_MuEnrichedPt5"] = ["xsec=3.913",     "kfact=1.000", "ref=G"]
+xs_db["QCD_PT-1000_MuEnrichedPt5"]      = ["xsec=1.323",     "kfact=1.000", "ref=G"]
 
+xs_db['QCD_PT-10to30_EMEnriched']   = ["xsec=6854000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-20to30_EMEnriched']   = ["xsec=5100000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-30to50_EMEnriched']   = ["xsec=6698000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-50to80_EMEnriched']   = ["xsec=2113000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-80to120_EMEnriched']  = ["xsec=394100.0",  "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-120to170_EMEnriched'] = ["xsec=70290.0",   "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-170to300_EMEnriched'] = ["xsec=17920.0",   "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-300toInf_EMEnriched'] = ["xsec=1224.0",    "kfact=1.000", "ref=G"]
+
+xs_db['QCD_PT-15to20_bcToE']   = ["xsec=2283000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-20to30_bcToE']   = ["xsec=2045000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-30to80_bcToE']   = ["xsec=1322000.0", "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-80to170_bcToE']  = ["xsec=74510.0",   "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-170to250_bcToE'] = ["xsec=3898.0",    "kfact=1.000", "ref=G"]
+xs_db['QCD_PT-250toInf_bcToE'] = ["xsec=963.4",     "kfact=1.000", "ref=G"]
 
 
 # THIS IS OLD, AND COMES FROM RUN 2 UL!!
