@@ -24,6 +24,9 @@ xs_db = {}
 # https://pdg.lbl.gov/2024/listings/rpp2024-list-w-boson.pdf
 # BR (W-->lv) = 0.1086
 # BR (W-->qq) = 0.6741
+# BR (W-->m vm) = 0.1078
+# BR (W-->e ve) = 0.1071
+# BR (W-->t vt) = 0.1138
 
 # Higgs xs at 125.38 GeV from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/LHCHWG136TeVxsec_extrap
 # ggH - XS = 51.96 pb
@@ -34,8 +37,8 @@ xs_db["GluGluHToWWTo2L2Nu_M125"] = ["xsec=1.17381", "kfact=1.000", "ref=E"] # 51
 xs_db["VBFHToWWTo2L2Nu_M125"]    = ["xsec=0.09187", "kfact=1.000", "ref=E"] #  4.067*0.2152*(3*0.108)*(3*0.108)
 
 ### WW
-xs_db["WW"]        = ["xsec=123.0", "kfact=1.000", "ref=A"]  # (XS(pp -> e mu ve vmu) - XS(gg -> e mu ve vmu)) / (BR(W -> mu vmu)*BR(W -> e ve)) = (1.5589-0.1391)/(0.1078*0.1071)
-xs_db["WWTo2L2Nu"] = ["xsec=13.05", "kfact=1.000", "ref=X"]  # 123.0 * 0.1086 * 0.1086 * 9
+xs_db["WW"]        = ["xsec=122.1", "kfact=1.000", "ref=A"]  # (XS(pp -> e mu ve vmu) - XS(gg -> e mu ve vmu)) / (BR(W -> mu vmu)*BR(W -> e ve)) = (1.5589-0.1497)/(0.1078*0.1071)
+xs_db["WWTo2L2Nu"] = ["xsec=12.96", "kfact=1.000", "ref=A"]  # 122.1 * 0.1086 * 0.1086 * 9
 
 xs_db["WWTo2L2Nu_LL"] = ["xsec=0.488",  "kfact=1.000", "ref=X"] ## 4.598 * 9 * BR(W->lnu) * BR(W->lnu) / BR(W->lnu) = 0.1086
 xs_db["WWTo2L2Nu_TT"] = ["xsec=6.266",  "kfact=1.000", "ref=X"] ## 59.03
@@ -46,15 +49,15 @@ xs_db["ggWW_TT"]      = ["xsec=0.329",  "kfact=1.000", "ref=X"] ## 3.104
 xs_db["ggWW_LT"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"] ## 0.08195
 xs_db["ggWW_TL"]      = ["xsec=0.0087", "kfact=1.000", "ref=X"] ## 0.08195
 
-xs_db["GluGlutoContintoWWtoENuENu"]     = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoENuMuNu"]    = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoENuTauNu"]   = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoMuNuENu"]    = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoMuNuMuNu"]   = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoMuNuTauNu"]  = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoTauNuENu"]   = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoTauNuMuNu"]  = ["xsec=0.0688", "kfact=1.000", "ref=X"]
-xs_db["GluGlutoContintoWWtoTauNuTauNu"] = ["xsec=0.0688", "kfact=1.000", "ref=X"]
+xs_db["GluGlutoContintoWWtoENuENu"]     = ["xsec=0.0744", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoENuMuNu"]    = ["xsec=0.0749", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoENuTauNu"]   = ["xsec=0.0790", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoMuNuENu"]    = ["xsec=0.0749", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoMuNuMuNu"]   = ["xsec=0.0753", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoMuNuTauNu"]  = ["xsec=0.0795", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoTauNuENu"]   = ["xsec=0.0790", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoTauNuMuNu"]  = ["xsec=0.0795", "kfact=1.000", "ref=A"]
+xs_db["GluGlutoContintoWWtoTauNuTauNu"] = ["xsec=0.0840", "kfact=1.000", "ref=A"]
 
 ### Top
 xs_db["TTTo2L2Nu"]                    = ["xsec=98.036", "kfact=1.000", "ref=C"] # 923.6 * (3*0.1086) * (3*0.1086)
