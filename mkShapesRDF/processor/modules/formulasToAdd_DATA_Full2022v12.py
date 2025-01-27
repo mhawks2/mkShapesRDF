@@ -8,6 +8,8 @@ class formulasToAdd_DATA_Full2022v12(Module):
         super().__init__("formulasToAdd_DATA_Full2022v12")
 
     def runModule(self, df, values):
+
+        # https://twiki.cern.ch/twiki/bin/viewauth/CMS/MissingETOptionalFiltersRun2#Run_3_2022_and_2023_data_and_MC
         df = df.Define(
             "METFilter_Common",
             "Flag_goodVertices * \

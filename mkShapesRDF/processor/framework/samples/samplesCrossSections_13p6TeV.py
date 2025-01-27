@@ -28,6 +28,12 @@ xs_db = {}
 # BR (W-->e ve) = 0.1071
 # BR (W-->t vt) = 0.1138
 
+# https://pdg.lbl.gov/2018/listings/rpp2018-list-z-boson.pdf
+# BR (Z-->ee) = 0.033632  
+# BR (Z-->mm) = 0.033662
+# BR (Z-->tt) = 0.033696
+
+
 # Higgs xs at 125.38 GeV from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/LHCHWG136TeVxsec_extrap
 # ggH - XS = 51.96 pb
 # VBF - XS = 4.067 pb 
@@ -75,9 +81,9 @@ xs_db["ST_s-channel_plus"]    = ["xsec=2.278", "kfact=1.000", "ref=X"]
 xs_db["ST_s-channel_minus"]   = ["xsec=1.43",  "kfact=1.000", "ref=X"]
 
 ### WZ
-xs_db["WZ"]        = ["xsec=54.3",    "kfact=1.000", "ref=X"]  ### MATRIX, SMP-22-017
-xs_db["WZtoLNu2Q"] = ["xsec=6.44",    "kfact=1.000", "ref=X"]
-xs_db["WZTo3LNu"]  = ["xsec=5.36",    "kfact=1.000", "ref=X"]  ###  54.3 * 0.10097 * 0.1086 * 3 * 3 
+xs_db["WZTo3LNu"]  = ["xsec=5.32",    "kfact=1.000", "ref=A"] # (XS(pp->e- e+ μ-  ̄vμ) + XS(pp->e- e+ μ+ vμ)) * 9 * BR(ZW->ll lv) / BR(ZW->ee mv)  (0.2385 + 0.3474) * 9 *  0.0036552588 / 0.0036255296
+xs_db["WZ"]        = ["xsec=53.9",    "kfact=1.000", "ref=A"] # XS(WZTo3LNu) / (3*9*BR(WZ->lv ll))
+xs_db["WZToLNu2Q"] = ["xsec=6.44",    "kfact=1.000", "ref=X"]
 xs_db["WZG"]       = ["xsec=0.08425", "kfact=1.000", "ref=X"]
 
 ### Zg
