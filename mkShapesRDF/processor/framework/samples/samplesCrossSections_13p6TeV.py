@@ -34,7 +34,7 @@ xs_db["GluGluHToWWTo2L2Nu_M125"] = ["xsec=1.17381", "kfact=1.000", "ref=E"] # 51
 xs_db["VBFHToWWTo2L2Nu_M125"]    = ["xsec=0.09187", "kfact=1.000", "ref=E"] #  4.067*0.2152*(3*0.108)*(3*0.108)
 
 ### WW
-xs_db["WW"]        = ["xsec=122.3", "kfact=1.000", "ref=X"]  ## 13 TeV values with 4% expected increase with MCFM
+xs_db["WW"]        = ["xsec=123.0", "kfact=1.000", "ref=A"]  # (XS(pp -> e mu ve vmu) - XS(gg -> e mu ve vmu)) / (BR(W -> mu vmu)*BR(W -> e ve)) = (1.5589-0.1391)/(0.1078*0.1071)
 xs_db["WWTo2L2Nu"] = ["xsec=12.98", "kfact=1.000", "ref=X"]  ### 122.3 * 0.1086 * 0.1086 * 9
 
 xs_db["WWTo2L2Nu_LL"] = ["xsec=0.488",  "kfact=1.000", "ref=X"] ## 4.598 * 9 * BR(W->lnu) * BR(W->lnu) / BR(W->lnu) = 0.1086
