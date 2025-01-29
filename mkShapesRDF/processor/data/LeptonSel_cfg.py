@@ -8,6 +8,7 @@ LepFilter_dict = {
 }
 
 ElectronWP = {
+
     "Full2018v9": {
         "VetoObjWP": {
             "HLTsafe": {
@@ -74,6 +75,7 @@ ElectronWP = {
             }
         },
     },
+
     "Full2022v12": {
         "VetoObjWP": {
             "HLTsafe": {
@@ -120,6 +122,31 @@ ElectronWP = {
                 } ,
                 'fakeW' : 'data/fake_prompt_rates/Full2022v12/wp90iso/',
             },
+            "mvaWinter22V2Iso_WP90": {
+                "cuts": {
+                    "ROOT::RVecB (Electron_pt.size(), true)": [
+                        "ROOT::VecOps::abs(Electron_eta) < 2.5",
+                        "Electron_mvaIso_WP90",
+                        "Electron_convVeto",
+                        "Electron_pfRelIso03_all < 0.06",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) <= 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.05",
+                        "ROOT::VecOps::abs(Electron_dz)  < 0.1",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) > 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.1",
+                        "ROOT::VecOps::abs(Electron_dz) <  0.2",
+                    ],
+                },
+                'tkSF':  {
+                    '1-1' : ["Electron-ID-SF", "data/scale_factor/Full2022v12/electron_POG.json"]
+                } ,
+                'wpSF':  {
+                    '1-1' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2022v12/electron_scale.json'],
+                } ,
+                'fakeW' : 'data/fake_prompt_rates/Full2022v12/mvaWinter22V2Iso_WP90/',
+            },
             "cutBased_LooseID_tthMVA_Run3": {
                  "cuts": {
                      "ROOT::RVecB (Electron_pt.size(), true)": [
@@ -147,31 +174,32 @@ ElectronWP = {
              },
         },
     },
+
     "Full2022EEv12": {
         "VetoObjWP": {
             "HLTsafe": {
                 "cuts": {
-                    # Common cuts                                                                                                                                       
+                    # Common cuts
                     "True": ["False"],
                 },
             },
         },
-        # ------------                                                                                                                                                  
+        # ------------
         "FakeObjWP": {
             "HLTsafe": {
                 "cuts": {
-                    # Common cuts                                                                                                                                       
+                    # Common cuts
                     "ROOT::RVecB (Electron_pt.size(), true)": [
                         "ROOT::VecOps::abs(Electron_eta) < 2.5",
                         "Electron_cutBased >= 3",
                         "Electron_convVeto == 1",
                     ],
-                    # Barrel                                                                                                                                            
+                    # Barrel
                     "ROOT::VecOps::abs(Electron_eta)  <= 1.479": [
                         "ROOT::VecOps::abs(Electron_dxy) < 0.05",
                         "ROOT::VecOps::abs(Electron_dz)  < 0.1",
                     ],
-                    # EndCap                                                                                                                                            
+                    # EndCap
                     "ROOT::VecOps::abs(Electron_eta)  > 1.479": [
                         "Electron_sieie  < 0.03",
                         "ROOT::VecOps::abs(Electron_eInvMinusPInv) < 0.014",
@@ -197,6 +225,32 @@ ElectronWP = {
                     '1-2' : ["2022FG-Electron-ID-SF", 'data/scale_factor/Full2022EEv12/electron_POG.json'],
                 } ,
                 'fakeW' : 'data/fake_prompt_rates/Full2022EEv12/wp90iso/',
+            },
+            "mvaWinter22V2Iso_WP90": {
+                "cuts": {
+                    "ROOT::RVecB (Electron_pt.size(), true)": [
+                        "ROOT::VecOps::abs(Electron_eta) < 2.5",
+                        "Electron_mvaIso_WP90",
+                        "Electron_convVeto",
+                        "Electron_pfRelIso03_all < 0.06",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) <= 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.05",
+                        "ROOT::VecOps::abs(Electron_dz)  < 0.1",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) > 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.1",
+                        "ROOT::VecOps::abs(Electron_dz) <  0.2",
+                    ],
+                },
+                'tkSF':  {
+                    '1-2' : ["2022FG-Electron-ID-SF", "data/scale_factor/Full2022EEv12/electron_POG.json"]
+                } ,
+                'wpSF':  {
+                    '1-1' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2022EEv12/electron_IsoWinter22_Run2022E.json'],
+                    '2-2' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2022EEv12/electron_IsoWinter22.json'],
+                } ,
+                'fakeW' : 'data/fake_prompt_rates/Full2022EEv12/mvaWinter22V2Iso_WP90/',
             },
              "cutBased_LooseID_tthMVA_Run3": {
                  "cuts": {
@@ -225,31 +279,31 @@ ElectronWP = {
              },
         },
     },
-"Full2023v12": {
+    "Full2023v12": {
         "VetoObjWP": {
             "HLTsafe": {
                 "cuts": {
-                    # Common cuts                                                                                                                                       
+                    # Common cuts
                     "True": ["False"],
                 },
             },
         },
-        # ------------                                                                                                                                                  
+        # ------------
         "FakeObjWP": {
             "HLTsafe": {
                 "cuts": {
-                    # Common cuts                                                                                                                                       
+                    # Common cuts
                     "ROOT::RVecB (Electron_pt.size(), true)": [
                         "ROOT::VecOps::abs(Electron_eta) < 2.5",
                         "Electron_cutBased >= 3",
                         "Electron_convVeto == 1",
                     ],
-                    # Barrel                                                                                                                                            
+                    # Barrel
                     "ROOT::VecOps::abs(Electron_eta)  <= 1.479": [
                         "ROOT::VecOps::abs(Electron_dxy) < 0.05",
                         "ROOT::VecOps::abs(Electron_dz)  < 0.1",
                     ],
-                    # EndCap                                                                                                                                            
+                    # EndCap
                     "ROOT::VecOps::abs(Electron_eta)  > 1.479": [
                         "Electron_sieie  < 0.03",
                         "ROOT::VecOps::abs(Electron_eInvMinusPInv) < 0.014",
@@ -275,6 +329,32 @@ ElectronWP = {
                     '1-1' : ["2023FG-Electron-ID-SF", 'data/scale_factor/Full2023v12/electron_POG.json'],
                 } ,
                 'fakeW' : 'data/fake_prompt_rates/Full2023v12/wp90iso/',
+            },
+            "mvaWinter22V2Iso_WP90": {
+                "cuts": {
+                    "ROOT::RVecB (Electron_pt.size(), true)": [
+                        "ROOT::VecOps::abs(Electron_eta) < 2.5",
+                        "Electron_mvaIso_WP90",
+                        "Electron_convVeto",
+                        "Electron_pfRelIso03_all < 0.06",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) <= 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.05",
+                        "ROOT::VecOps::abs(Electron_dz)  < 0.1",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) > 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.1",
+                        "ROOT::VecOps::abs(Electron_dz) <  0.2",
+                    ],
+                },
+                'tkSF':  {
+                    '1-2' : ["2023FG-Electron-ID-SF", "data/scale_factor/Full2023v12/electron_POG.json"]
+                } ,
+                'wpSF':  {
+                    '1-1' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2023v12/electron_IsoWinter22_Run2022E.json'], # FIX!!
+                    '2-2' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2023v12/electron_IsoWinter22.json'],          # FIX!!
+                } ,
+                'fakeW' : 'data/fake_prompt_rates/Full2022EEv12/mvaWinter22V2Iso_WP90/',
             },
             "cutBased_LooseID_tthMVA_Run3": {
                 "cuts": {
@@ -356,6 +436,32 @@ ElectronWP = {
                     '1-1' : ["2023BPixFG-Electron-ID-SF", 'data/scale_factor/Full2023BPixv12/electron_POG.json'],
                 } ,
                 'fakeW' : 'data/fake_prompt_rates/Full2023BPixv12/wp90iso/',
+            },
+            "mvaWinter22V2Iso_WP90": {
+                "cuts": {
+                    "ROOT::RVecB (Electron_pt.size(), true)": [
+                        "ROOT::VecOps::abs(Electron_eta) < 2.5",
+                        "Electron_mvaIso_WP90",
+                        "Electron_convVeto",
+                        "Electron_pfRelIso03_all < 0.06",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) <= 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.05",
+                        "ROOT::VecOps::abs(Electron_dz)  < 0.1",
+                    ],
+                    "ROOT::VecOps::abs(Electron_eta) > 1.479": [
+                        "ROOT::VecOps::abs(Electron_dxy) < 0.1",
+                        "ROOT::VecOps::abs(Electron_dz) <  0.2",
+                    ],
+                },
+                'tkSF':  {
+                    '1-2' : ["2023BPixFG-Electron-ID-SF", "data/scale_factor/Full2023BPixv12/electron_POG.json"]
+                } ,
+                'wpSF':  {
+                    '1-1' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2023BPixv12/electron_IsoWinter22_Run2022E.json'], # FIX!!
+                    '2-2' : ["NUM_Electron_mvaWinter22V2IsoWP90_DEN_ElectronTrack", 'data/scale_factor/Full2023BPixv12/electron_IsoWinter22.json'],          # FIX!!
+                } ,
+                'fakeW' : 'data/fake_prompt_rates/Full2022EEv12/mvaWinter22V2Iso_WP90/',
             },
             "cutBased__LooseID_tthMVA_Run3": {
                 "cuts": {
