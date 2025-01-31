@@ -6,7 +6,7 @@
 # A: https://twiki.cern.ch/twiki/bin/viewauth/CMS/MATRIXCrossSectionsat13p6TeV (or https://cms-gen.gitbook.io/cms-generator-central-place/about-cross-sections/higher-order-calculation/matrix_di_boson_xsec_13p6_tev)
 # B: https://github.com/cms-sw/genproductions/blob/master/Utilities/calculateXSectionAndFilterEfficiency/calculateXSectionAndFilterEfficiency.sh
 # C: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/TtbarNNLO
-# D: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef#Single_top_s_channel
+# D: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef
 # E: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/LHCHWG136TeVxsec_extrap
 # F: https://cms-gen.gitbook.io/cms-generator-central-place/about-cross-sections
 # G: https://xsecdb-xsdb-official.app.cern.ch/xsdb/
@@ -73,12 +73,15 @@ xs_db["TTToSemiLeptonic"]             = ["xsec=406.82", "kfact=1.000", "ref=C"] 
 xs_db["TTToSemiLeptonic_TuneCP5Up"]   = ["xsec=406.82", "kfact=1.000", "ref=C"]
 xs_db["TTToSemiLeptonic_TuneCP5Down"] = ["xsec=406.82", "kfact=1.000", "ref=C"]
 
-xs_db["ST_t-channel_top"]     = ["xsec=145.0", "kfact=1.000", "ref=X"]
-xs_db["ST_t-channel_antitop"] = ["xsec=87.2",  "kfact=1.000", "ref=X"]
-xs_db["ST_tW_top"]            = ["xsec=43.95", "kfact=1.000", "ref=X"]
-xs_db["ST_tW_antitop"]        = ["xsec=43.95", "kfact=1.000", "ref=X"]
-xs_db["ST_s-channel_plus"]    = ["xsec=2.278", "kfact=1.000", "ref=X"]
-xs_db["ST_s-channel_minus"]   = ["xsec=1.43",  "kfact=1.000", "ref=X"]
+xs_db["ST_tW_top"]        = ["xsec=19.30", "kfact=1.000", "ref=D"] # 43.95 * 2*(3*0.1086*0.6741)
+xs_db["ST_tW_antitop"]    = ["xsec=19.30", "kfact=1.000", "ref=D"] # 43.95 * 2*(3*0.1086*0.6741)
+xs_db["TWminusto2L2Nu"]   = ["xsec=4.665", "kfact=1.000", "ref=D"] # 43.95 * (3*0.1086) * (3*0.1086)
+xs_db["TbarWplusto2L2Nu"] = ["xsec=4.665", "kfact=1.000", "ref=D"] # 43.95 * (3*0.1086) * (3*0.1086)
+
+xs_db["ST_t-channel_top"]     = ["xsec=145.0", "kfact=1.000", "ref=D"]
+xs_db["ST_t-channel_antitop"] = ["xsec=87.2",  "kfact=1.000", "ref=D"]
+xs_db["ST_s-channel_plus"]    = ["xsec=2.278", "kfact=1.000", "ref=X"] # 7.244 *
+xs_db["ST_s-channel_minus"]   = ["xsec=1.43",  "kfact=1.000", "ref=X"] # 4.534 *
 
 ### WZ
 xs_db["WZTo3LNu"]  = ["xsec=5.32",    "kfact=1.000", "ref=A"] # (XS(pp->e- e+ μ-  ̄vμ) + XS(pp->e- e+ μ+ vμ)) * 9 * BR(ZW->ll lv) / BR(ZW->ee mv)  (0.2385 + 0.3474) * 9 *  0.0036552588 / 0.0036255296
