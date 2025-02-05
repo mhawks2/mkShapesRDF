@@ -433,26 +433,26 @@ def main():
         outputFileTrunc = ".".join(outputFile.split(".")[:-1])
         if "/eos/user" in outputFolder:
             filesToMerge = list(
-               map(
-                   lambda k: f"{outputFolder}/{outputFileTrunc}__ALL__{k[0]}_{str(k[3])}.root",
-                   _samples,
-               )
+                map(
+                    lambda k: f"{outputFolder}/{outputFileTrunc}__ALL__{k[0]}_{str(k[3])}.root",
+                    _samples,
+                )
             )
-           print("\n\nMerging files\n\n")
-           print("\n\n", filesToMerge, "\n\n")
+            print("\n\nMerging files\n\n")
+            print("\n\n", filesToMerge, "\n\n")
         
-           print(f"Hadding files into {outputFolder}/{outputFile}")
-       else:
-           filesToMerge = list(
-               map(
-                   lambda k: f"{folder}/{outputFolder}/{outputFileTrunc}__ALL__{k[0]}_{str(k[3])}.root",
-                   _samples,
-               )
-           )
-           print("\n\nMerging files\n\n")
-           print("\n\n", filesToMerge, "\n\n")
-
-           print(f"Hadding files into {folder}/{outputFolder}/{outputFile}")
+            print(f"Hadding files into {outputFolder}/{outputFile}")
+        else:
+            filesToMerge = list(
+                map(
+                    lambda k: f"{folder}/{outputFolder}/{outputFileTrunc}__ALL__{k[0]}_{str(k[3])}.root",
+                    _samples,
+                )
+            )
+            print("\n\nMerging files\n\n")
+            print("\n\n", filesToMerge, "\n\n")
+            
+            print(f"Hadding files into {folder}/{outputFolder}/{outputFile}")
         #filesToMerge = list(
         #    map(
         #        lambda k: f"{folder}/{outputFolder}/{outputFileTrunc}__ALL__{k[0]}_{str(k[3])}.root",
