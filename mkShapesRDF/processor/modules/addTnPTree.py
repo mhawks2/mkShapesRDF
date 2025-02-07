@@ -29,7 +29,7 @@ class addTnPTree(Module):
                 self.passTrig = "HLT_Ele35_WPTight_Gsf"
             elif self.flavor == "Muon":
                 self.tagSel   = "Muon_pt>26.0 && Muon_tightId && abs(Muon_eta)<2.4 && (Muon_filterBits & 3)"
-                self.probeSel = "Muon_pt>5.0 && Muon_looseId && abs(Muon_eta)<2.4"
+                self.probeSel = "Muon_pt>5.0 && Muon_isTracker && abs(Muon_eta)<2.4"
                 self.passTrig = "HLT_IsoMu24"
 
             self.mass_range = [60, 140]
@@ -40,7 +40,7 @@ class addTnPTree(Module):
                 self.passTrig = "HLT_Ele35_WPTight_Gsf"
             elif self.flavor == "Muon":
                 self.tagSel   = "Muon_pt>26.0 && Muon_tightId && abs(Muon_eta)<2.4 && (Muon_filterBits & 3)"
-                self.probeSel = "Muon_pt>5.0 && Muon_looseId && abs(Muon_eta)<2.4"
+                self.probeSel = "Muon_pt>5.0 && Muon_isTracker && abs(Muon_eta)<2.4"
                 self.passTrig = "HLT_IsoMu24"
 
             self.mass_range = [60, 140]
