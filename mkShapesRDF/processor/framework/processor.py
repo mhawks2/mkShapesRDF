@@ -240,9 +240,10 @@ class Processor:
             """
         files = []
         eosTmpPath = """+eosTmpPath+"""
+        print(f'eosTmpPath = {eosTmpPath}')
         for f in _files:
             filename = f.split('/')[-1]
-            if eosTmpPath=="'USEDAS'":
+            if eosTmpPath=='USEDAS':
                 filename = os.environ['TMPDIR'] + '/input__' + filename
             else:
                 filename = eosTmpPath + os.getlogin() + 'input__' + filename
@@ -331,7 +332,7 @@ class Processor:
         print(tabulate(data, headers=["desc.", "value"]))
             """)
 
-        if self.inputFolder != "" and eosTmpPath!="'USEDAS'":
+        if self.inputFolder != "" and eosTmpPath!='USEDAS':
             self.fPy += dedent("""
         for f in files:
             print('Removing input file', f)
@@ -430,7 +431,7 @@ class Processor:
                 if self.inputFolder != "":
                     outputFilename = _files[0].split("/")[-1]
 
-                if eosTmpPath=="'USEDAS'":
+                if eosTmpPath=='USEDAS':
                     #if not os.path.exists(os.environ['TMPDIR']):
                     #    os.mkdir(os.environ['TMPDIR'])
                     _fPy = _fPy.replace("RPLME_OUTPUTFILENAMETMP", "os.environ['TMPDIR']")
