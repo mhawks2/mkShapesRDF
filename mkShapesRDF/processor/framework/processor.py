@@ -159,6 +159,7 @@ class Processor:
         sys.path.insert(0, list(filter(lambda k: 'myenv' in k, sys.path))[0])
         import ROOT
         import os
+        import getpass
         ROOT.gROOT.SetBatch(True)
         """
         )
@@ -245,7 +246,7 @@ class Processor:
             if eosTmpPath=="'USEDAS'":
                 filename = os.environ['TMPDIR'] + '/input__' + filename
             else:
-                filename = eosTmpPath + os.getlogin() + 'input__' + filename
+                filename = eosTmpPath + getpass.getuser() + '/input__' + filename
             files.append(filename)
             proc = 0
             if "root://" in f:
@@ -298,6 +299,14 @@ class Processor:
 
             # Create output folder
             proc = subprocess.Popen(f"mkdir -p {outputFolderPath}", shell=True)
+            """
+        )
+        # This is needed at KIT since the eosDir is not a real common directory
+        if site == 'kit':
+            self.fPy += """    proc = subprocess.Popen(f"chmod -R a+rwx """+self.eosDir+"""", shell=True)"""
+
+        self.fPy += dedent(
+                """
             proc.wait()
 
             # Copy output file in output folder
