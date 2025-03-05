@@ -440,12 +440,14 @@ class Processor:
                 if self.inputFolder != "":
                     outputFilename = _files[0].split("/")[-1]
 
-                if eosTmpPath=='USEDAS':
+                if eosTmpPath=="'USEDAS'":
                     #if not os.path.exists(os.environ['TMPDIR']):
                     #    os.mkdir(os.environ['TMPDIR'])
                     _fPy = _fPy.replace("RPLME_OUTPUTFILENAMETMP", "os.environ['TMPDIR']")
+                    # print(f"Using USEDAS")
                 else:
                     _fPy = _fPy.replace("RPLME_OUTPUTFILENAMETMP", eosTmpPath)
+                    # print(f"Using {eosTmpPath}")
                 _fPy = _fPy.replace("RPLME_OUTPUTFILENAME", outputFilename)
 
                 jobDirPart = jobDir + sampleName + "__part" + str(part) + "/"
