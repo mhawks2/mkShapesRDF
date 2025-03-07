@@ -227,7 +227,8 @@ class Processor:
         # Select site
         uname = os.uname()[1]
         site = ''
-        if 'portal' in uname:  site = 'kit'
+        if 'portal'   in uname: site = 'kit'
+        elif "bms"    in uname: site = 'kit'
         elif "lxplus" in uname: site = 'cern'
 
         eosTmpPath = Sites[site]["eosTmpWorkDir"]
