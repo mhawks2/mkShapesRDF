@@ -225,7 +225,7 @@ class addTnPTree(Module):
                 
                 df = df.Define(f"tag_{label}", f"getVariables(TPPairs, {var}, 1)")
                 variables_to_save.append(f"tag_{label}")
-
+                
         variables_to_save.append("npairs")
         variables_to_save.append("pair_mass")
         variables_to_save.append("pair_pt")
@@ -237,6 +237,12 @@ class addTnPTree(Module):
         variables_to_save.append("nVertices")
         variables_to_save.append("run")
         variables_to_save.append("luminosityBlock")
+        if "genWeight" in df.GetColumnNames():
+            variables_to_save.append("genWeight")
+            variables_to_save.append("puWeight")
+            variables_to_save.append("Pileup_nTrueInt")
+            variables_to_save.append("Pileup_nPU")
+            
         variables_to_save.append(self.passTrig)
 
         ### Expand additional variables
@@ -256,6 +262,11 @@ class addTnPTree(Module):
         if not os.path.isdir(os.path.dirname(outName)):
             os.makedirs(os.path.dirname(outName))
 
+        writeROOT = False
+        if self.flavor=="Electron":
+            writeROOT = True
+            outName = outName.replace(".parquet", ".root")
+            
         first = True
 
         print("Total number of iterations -> " + str(nIterations))
@@ -267,7 +278,7 @@ class addTnPTree(Module):
         for i in range(nIterations):
             print("Iteration: " + str(i))
             _df = df.df.Range(i * chunksize, (i+1) * chunksize)
-            events = ak.from_rdataframe(_df, branches)
+            events = ak.from_rdataframe(_df, branches)            
         
             def getBranchFlatten(events, branch):
                 ak_array = [ak.Array(v) for v in events[branch]]
@@ -277,11 +288,22 @@ class addTnPTree(Module):
             df_np = {}
             for key in branches:
                 df_np[key] = getBranchFlatten(events, key)
-            df_ak = pd.DataFrame(df_np)        
-            if first:
-                df_ak.to_parquet(outName, engine='fastparquet', append=False)
-                first=False
+
+            if writeROOT:
+                if first:
+                    outFile = uproot.recreate(outName)
+                    outFile["Events"] = df_np
+                    outFile.close()
+                else:
+                    outFile = uproot.update(outName)
+                    outFile["Events"].extend(df_np)
+                    outFile.close()
             else:
-                df_ak.to_parquet(outName, engine='fastparquet', append=True)            
+                df_ak = pd.DataFrame(df_np)        
+                if first:
+                    df_ak.to_parquet(outName, engine='fastparquet', append=False)
+                    first=False
+                else:
+                    df_ak.to_parquet(outName, engine='fastparquet', append=True)            
 
         return df
