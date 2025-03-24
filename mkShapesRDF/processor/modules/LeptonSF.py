@@ -324,8 +324,8 @@ class LeptonSF(Module):
                 columnsToDrop.append("EleRecoSF_tmp")
 
                 df = df.Redefine("Lepton_RecoSF",      "EleRecoSF_tmp[0]")
-                df = df.Redefine("Lepton_RecoSF_Up",   "EleRecoSF_tmp[0] + EleRecoSF_tmp[1]")
-                df = df.Redefine("Lepton_RecoSF_Down", "EleRecoSF_tmp[0] - EleRecoSF_tmp[2]")
+                df = df.Redefine("Lepton_RecoSF_Up",   "EleRecoSF_tmp[1]")
+                df = df.Redefine("Lepton_RecoSF_Down", "EleRecoSF_tmp[2]")
 
                 did_reco = True
 
