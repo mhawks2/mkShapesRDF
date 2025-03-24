@@ -1376,7 +1376,7 @@ Steps = {
         "do4MC": False,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonScaleSmearing",
-        "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
+        "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', True, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
     
@@ -1385,7 +1385,7 @@ Steps = {
         "do4MC": False,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonScaleSmearing",
-        "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', True, 'RPLME_FW')",
+        "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
         

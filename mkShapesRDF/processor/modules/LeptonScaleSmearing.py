@@ -6,10 +6,10 @@ import correctionlib
 correctionlib.register_pyroot_binding()
 
 class LeptonScaleSmearing(Module):
-    def __init__(self, era, isMC, framework_path=None):
+    def __init__(self, era, isData, framework_path=None):
         super().__init__("LeptonScaleSmearing")
 
-        self.isMC = isMC
+        self.isData = isData
         self.scale_path = ""
         self.columnsToDrop = []
         self.correction_file = ""
@@ -51,7 +51,7 @@ class LeptonScaleSmearing(Module):
                                                RVecI Lepton_pdgId,
                                                RVecI Lepton_muonIdx,
                                                RVecI Muon_nTrackerLayers,
-                                               bool isMC)
+                                               bool is_data)
                 {
                     
                     float tmpScale_mc;
@@ -63,17 +63,17 @@ class LeptonScaleSmearing(Module):
                     
                     std::vector<RVecF> results = {Lepton_newPt, Lepton_newPt_ScaleUp, Lepton_newPt_ScaleDn, Lepton_newPt_ResUp, Lepton_newPt_ResDn};
                     
-                    if (!isMC){
+                    if (is_data){
                         for (unsigned int i=0; i<Lepton_pt.size(); i++){
                             if (abs(Lepton_pdgId[i])==13)
-                            Lepton_newPt[i] = pt_scale(1, Lepton_pt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]]);                            
+                            Lepton_newPt[i] = pt_scale(is_data, Lepton_pt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]]);                            
                         }
                         results[0] = Lepton_newPt;
                     }else{
                         for (unsigned int i=0; i<Lepton_pt.size(); i++){
                             tmpScale_mc = -99.9;
                             if (abs(Lepton_pdgId[i])==13){
-                                tmpScale_mc = pt_scale(isMC, Lepton_pt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]]);
+                                tmpScale_mc = pt_scale(is_data, Lepton_pt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]]);
                                 Lepton_newPt[i] = pt_resol(tmpScale_mc, Lepton_eta[i], (float)Muon_nTrackerLayers[Lepton_muonIdx[i]]);
                                 Lepton_newPt_ScaleUp[i] = pt_scale_var(Lepton_newPt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]], "up");
                                 Lepton_newPt_ScaleDn[i] = pt_scale_var(Lepton_newPt[i], Lepton_eta[i], Lepton_phi[i], Muon_charge[Lepton_muonIdx[i]], "dn");
@@ -134,10 +134,10 @@ class LeptonScaleSmearing(Module):
 
         #### Compute the muon scale and smearing corrections
 
-        isMC = str(self.isMC).lower()
+        isData = str(self.isData).lower()
         df = df.Define(
             "Lepton_ScaleSmearing",
-            f"doMuonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers, {isMC})"
+            f"doMuonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers, {isData})"
         )
 
         df = df.Define(
@@ -145,7 +145,7 @@ class LeptonScaleSmearing(Module):
             "Lepton_ScaleSmearing[0]"
         )
         self.columnsToDrop.append("Lepton_newPt")
-        if self.isMC:
+        if not self.isData:
             df = df.Define(
                 "Lepton_pt_ScaleUp",
                 "Lepton_ScaleSmearing[1]"
