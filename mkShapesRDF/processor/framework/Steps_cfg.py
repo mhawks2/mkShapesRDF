@@ -1388,7 +1388,16 @@ Steps = {
         "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
-        
+
+    "formulasDATA": {
+        "isChain": False,
+        "do4MC": False,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.formulasToAdd_DATA_RunIII",
+        "declare": "formulasDATA = lambda : formulasToAdd_DATA_RunIII('RPLME_CMSSW')",
+        "module": "formulasDATA()",
+    },
+    
     "formulasMC": {
         "isChain": False,
         "do4MC": True,
