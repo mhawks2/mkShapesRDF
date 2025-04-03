@@ -3,6 +3,9 @@
 
 using namespace std;
 
+// This macro is used to compute the supercluster eta for electrons and photons as described here: 
+// https://twiki.cern.ch/twiki/bin/view/CMS/EgammaNanoAOD#How_to_get_photon_supercluster_e
+
 float scEta(float eta, float phi, float PV_x, float PV_y, float PV_z) 
 {
 

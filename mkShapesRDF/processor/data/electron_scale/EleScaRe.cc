@@ -1,3 +1,6 @@
+// This macro contains the function needed to apply scale and smearing correction to electrons and photons
+// as described here https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammSFandSSRun3
+
 #include <iostream>
 #include "TString.h"
 #include "TFile.h"
@@ -6,38 +9,59 @@
 #include <vector>
 #include "correction.h"
 
-static TRandom3 rng(125);
-
-std::vector<float> elept_smear_mc(float Lepton_pt, float Electron_r9, float sc_eta)
+// Obtain the uncertainty on the smearing width using MC original variables
+double ele_unc_smear(double Lepton_pt, double Electron_r9, double sc_eta, double random_number, string updn)
 {
-    std::vector<float> result(3);
-    float Lepton_newPt = Lepton_pt;
-    float smear = elecset_smear->evaluate({"smear", Lepton_pt, Electron_r9, abs(sc_eta)});
-    float random_number = rng.Gaus(0.0, 1.0);
-    Lepton_newPt = Lepton_pt * (1 + smear * random_number);
-    float unc_smear = elecset_smear->evaluate({"esmear", Lepton_pt, Electron_r9, abs(sc_eta)});
-    float smearing_up = Lepton_pt * (1 + (smear + unc_smear) * random_number);
-    float smearing_down = Lepton_pt * (1 + (smear - unc_smear) * random_number);
-    result[0] = Lepton_newPt;
-    result[1] = smearing_up;
-    result[2] = smearing_down; 
-    return result;
+    double smear = elecset_smear->evaluate({"smear", Lepton_pt, Electron_r9, abs(sc_eta)});
+    double unc_smear = elecset_smear->evaluate({"esmear", Lepton_pt, Electron_r9, abs(sc_eta)});
+    double mc_unc_smear = Lepton_pt;
+    if (updn=="up"){
+        mc_unc_smear = Lepton_pt * (1 + (smear + unc_smear) * random_number);
+    }
+    else if (updn=="dn"){
+        mc_unc_smear = Lepton_pt * (1 + (smear - unc_smear) * random_number);
+    }
+    else {
+        cout << "ERROR: updn must be 'up' or 'dn'" << endl;
+    }
+    return mc_unc_smear;
 }
 
-float elept_scale_data(float Lepton_pt, float Electron_seedGain, float Electron_r9, float run, float sc_eta)
+// Scale correction applied to data
+double ele_scale(double run, double sc_eta, double Electron_r9, double Lepton_pt, double Electron_seedGain)
 {
-    float Lepton_newPt = Lepton_pt;
-    float scale = elecset_scale->evaluate({"scale", run, sc_eta, Electron_r9, abs(sc_eta), Lepton_pt, Electron_seedGain});
-    Lepton_newPt = scale * Lepton_pt;
-    return Lepton_newPt;
+    double scale = elecset_scale->evaluate({"scale", run, sc_eta, Electron_r9, abs(sc_eta), Lepton_pt, Electron_seedGain});
+    double data_scale = scale * Lepton_pt;
+    return data_scale;
 }
 
-std::vector<float> elept_scale_mc(float Lepton_pt, float Electron_r9, float sc_eta)
+// Calculate the nominal smearing factor for MC
+double ele_smear(double Lepton_pt, double Electron_r9, double sc_eta, double random_number)
 {
-    std::vector<float> result(2);
-    float Lepton_newPt = Lepton_pt;
-    float unc_scale = elecset_scale->evaluate({"escale", Lepton_pt, Electron_r9, abs(sc_eta)});
-    result[0] = (1 + unc_scale) * Lepton_newPt;
-    result[1] = (1 - unc_scale) * Lepton_newPt;
-    return result;
+    double smear = elecset_smear->evaluate({"smear", Lepton_pt, Electron_r9, abs(sc_eta)});
+    double mc_smear = Lepton_pt * (1 + smear * random_number);
+    return mc_smear;
+}
+
+// Function that compute the scale uncertainties
+// It is evaluated on the original MC variables BUT applied on the smeared pT
+// Beware that unlike the documentation (/https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration/-/blob/master/examples/egmScaleAndSmearingExample.py)
+// all the inputs are needed for the evaluation
+double ele_unc_scale(double run, double sc_eta, double Electron_r9, double Lepton_pt, double Electron_seedGain, double Lepton_newPt, string updn)
+{
+    double unc_scale = elecset_scale->evaluate({"escale", run, sc_eta, Electron_r9, abs(sc_eta), Lepton_pt, Electron_seedGain});
+    double mc_unc_scale = Lepton_newPt;
+    if (updn=="up")
+    {
+        mc_unc_scale = (1 + unc_scale) * Lepton_newPt;
+    }
+    else if (updn=="dn")
+    {
+        mc_unc_scale = (1 - unc_scale) * Lepton_newPt;
+    }
+    else 
+    {
+        cout << "ERROR: updn must be 'up' or 'dn'" << endl;
+    }
+    return mc_unc_scale;
 }
