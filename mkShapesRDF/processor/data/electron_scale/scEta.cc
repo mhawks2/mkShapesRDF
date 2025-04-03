@@ -12,7 +12,7 @@ float scEta(float eta, float phi, float PV_x, float PV_y, float PV_z)
     float tg_theta_over_2 = exp(-eta);
     float tg_theta = 2 * tg_theta_over_2 / (1 - tg_theta_over_2 * tg_theta_over_2);
     float tg_sctheta;
-    if (abs(eta) <= 2.5) 
+    if (abs(eta) <= 1.479) 
     {
         float R = 130;
         float angle_x0_y0 = 0;
@@ -28,7 +28,7 @@ float scEta(float eta, float phi, float PV_x, float PV_y, float PV_z)
         float z0_zSC = l / tg_theta;
         tg_sctheta = R / (PV_z + z0_zSC);
     } 
-    else if (abs(eta) > 2.5) 
+    else if (abs(eta) > 1.479) 
     {
         float intersection_z = (eta > 0) ? 310 : -310;
         float base = intersection_z - PV_z;
