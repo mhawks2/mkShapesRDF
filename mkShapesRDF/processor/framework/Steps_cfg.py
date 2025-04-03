@@ -1010,6 +1010,19 @@ Steps = {
     ###
     ### Full set of corrections for Run2022E+FG Prompt : Summer22EE MC campaign
     ###
+    "MCCorr2022EEv12_testrecipes": {
+        "isChain": True,
+        "do4MC": True,
+        "do4Data": False,
+        "selection": '"((nElectron+nMuon)>=0)"',
+        "subTargets": [
+            "leptonMaker_nofilter",
+            "lepSel_Summer22",
+            "trigMC_2022EE",
+            "leptonSF_Summer22",
+            "finalSnapshot_MC"
+        ]
+    },
     "MCl1loose2022EEv12__MCCorr2022EEv12__l2tight": {
         "isChain": True,
         "do4MC": True,
@@ -1169,7 +1182,14 @@ Steps = {
         "declare": "leptonMaker = lambda : LeptonMaker()",
         "module": "leptonMaker()",
     },
-
+	"leptonMaker_nofilter": {
+        "isChain": False,
+        "do4MC": True,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.LeptonMaker",
+        "declare": "leptonMaker = lambda : LeptonMaker(min_lep_pt=0.)",
+        "module": "leptonMaker()",
+    },
     "lepFiller_hwwMVA": {
         "isChain": False,
         "do4MC": True,
