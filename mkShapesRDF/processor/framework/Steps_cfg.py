@@ -1017,9 +1017,9 @@ Steps = {
         "selection": '"((nElectron+nMuon)>=0)"',
         "subTargets": [
             "leptonMaker_nofilter",
-            "lepSel_Summer22",
+            "lepSel_Summer22EE_testrecipes",
             "trigMC_2022EE",
-            "leptonSF_Summer22",
+            "leptonSF_Summer22EE",
             "finalSnapshot_MC"
         ]
     },
@@ -1217,6 +1217,14 @@ Steps = {
         "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW")',
         "module": "leptonSel()",
     },
+    "lepSel_testrecipes":{
+        "isChain": False,
+        "do4MC": True,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.LeptonSel",
+        "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW", False)',
+        "module": "leptonSel()",
+    },
     
     "jetSelUL": {
         "isChain": False,
@@ -1408,7 +1416,18 @@ Steps = {
         "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
+<<<<<<< HEAD
 
+=======
+    "leptonSF_Summer22EE": {
+        "isChain": False,
+        "do4MC": False,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.LeptonSF",
+        "declare": "leptonSF = lambda : LeptonSF('Full2022EEv12')",
+        "module": "leptonSF()",
+    },
+>>>>>>> fa07bb9 (Added the possibility in LeptonSel to disable filtering (for testing purposes). Does not change the default behavior)
     "formulasDATA": {
         "isChain": False,
         "do4MC": False,
