@@ -118,7 +118,7 @@ class Processor:
                 }
             except KeyError:
                	d = {
-					"process": sampleName,
+				    "process": sampleName,
                     "folder": self.Samples[sampleName]["folder"],
                     'isLatino': False
                 }
