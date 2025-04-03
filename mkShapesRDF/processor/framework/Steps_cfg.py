@@ -1416,18 +1416,6 @@ Steps = {
         "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
-<<<<<<< HEAD
-
-=======
-    "leptonSF_Summer22EE": {
-        "isChain": False,
-        "do4MC": False,
-        "do4Data": True,
-        "import": "mkShapesRDF.processor.modules.LeptonSF",
-        "declare": "leptonSF = lambda : LeptonSF('Full2022EEv12')",
-        "module": "leptonSF()",
-    },
->>>>>>> fa07bb9 (Added the possibility in LeptonSel to disable filtering (for testing purposes). Does not change the default behavior)
     "formulasDATA": {
         "isChain": False,
         "do4MC": False,
