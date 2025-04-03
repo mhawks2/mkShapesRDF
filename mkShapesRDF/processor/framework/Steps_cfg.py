@@ -1182,7 +1182,7 @@ Steps = {
         "declare": "leptonMaker = lambda : LeptonMaker()",
         "module": "leptonMaker()",
     },
-	"leptonMaker_nofilter": {
+    "leptonMaker_nofilter": {
         "isChain": False,
         "do4MC": True,
         "do4Data": True,
@@ -1416,6 +1416,7 @@ Steps = {
         "declare": "LeptonSS = lambda : LeptonScaleSmearing('RPLME_CMSSW', False, 'RPLME_FW')",
         "module": "LeptonSS()",
     },
+    
     "formulasDATA": {
         "isChain": False,
         "do4MC": False,
