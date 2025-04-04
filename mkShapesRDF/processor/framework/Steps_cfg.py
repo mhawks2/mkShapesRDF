@@ -1010,16 +1010,17 @@ Steps = {
     ###
     ### Full set of corrections for Run2022E+FG Prompt : Summer22EE MC campaign
     ###
-    "MCCorr2022EEv12_testrecipes": {
+    "testrecipes": {
         "isChain": True,
         "do4MC": True,
         "do4Data": False,
         "selection": '"((nElectron+nMuon)>=0)"',
         "subTargets": [
             "leptonMaker_nofilter",
-            "lepSel_Summer22EE_testrecipes",
-            "trigMC_2022EE",
-            "leptonSF_Summer22EE",
+            "lepFiller_tthMVA",
+            "lepSel_testrecipes",
+            "trigMC",
+            "leptonSF",
             "finalSnapshot_MC"
         ]
     },

@@ -8,7 +8,7 @@ if len(sys.argv) < 3:
 
 df = ROOT.RDataFrame("Events", sys.argv[1])
 
-cols = df.Define("MuonIdSFProd", "ROOT::VecOps::Product(Lepton_tightMuon_cut_TightID_POG_NOISO_idSF)")\
+cols = df.Define("MuonIdSFProd", "ROOT::VecOps::Product(Lepton_tightMuon_cut_TightID_POG_idSF)")\
          .AsNumpy(["event", "run", "luminosityBlock", "MuonIdSFProd"])
 
 out = np.column_stack((cols['event'], cols['run'], cols['luminosityBlock'], cols['MuonIdSFProd']))

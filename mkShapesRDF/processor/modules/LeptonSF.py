@@ -637,9 +637,9 @@ class LeptonSF(Module):
                             if (abs(mu_pdgId[i])==13){
 
                                 pt = ROOT::VecOps::Max(ROOT::RVecF{ROOT::VecOps::Min(ROOT::RVecF{mu_pt[i], """
-                                + str(self.mu_maxPt)
+                                + (str(self.mu_maxPt) if "POG" not in wp else str(99999))
                                 + """}), """
-                                + str(self.mu_minPt)
+                                + (str(self.mu_minPt) if "POG" not in wp else str(15))
                                 + """}); 
                                                                                                                                                                     
                                 eta = ROOT::VecOps::Max(ROOT::RVecF{ROOT::VecOps::Min(ROOT::RVecF{mu_eta[i], """
@@ -692,31 +692,31 @@ class LeptonSF(Module):
                                 SFstat.push_back(sfstat);
                                 SFsyst.push_back(sfsyst);
 
-							    SFid.push_back(sf_id);
-							    SFid_stat.push_back(sf_idstat);
-							    SFid_syst.push_back(sf_idsyst);	
+                                SFid.push_back(sf_id);
+                                SFid_stat.push_back(sf_idstat);
+                                SFid_syst.push_back(sf_idsyst);	
     
-							    SFiso.push_back(sf_iso);
-							    SFiso_stat.push_back(sf_isostat);
-							    SFiso_syst.push_back(sf_isosyst);	
-								
-							    SFtth.push_back(sf_tth);
-							    SFtth_stat.push_back(sf_tthstat);
-							    SFtth_syst.push_back(sf_tthsyst);	
+                                SFiso.push_back(sf_iso);
+                                SFiso_stat.push_back(sf_isostat);
+                                SFiso_syst.push_back(sf_isosyst);	
+
+                                SFtth.push_back(sf_tth);
+                                SFtth_stat.push_back(sf_tthstat);
+                                SFtth_syst.push_back(sf_tthsyst);	
 
                             }else{
                                 SF.push_back(1.0);
                                 SFstat.push_back(0.0);
                                 SFsyst.push_back(0.0);
-							    SFid.push_back(1.0);
-							    SFid_stat.push_back(0.0);
-							    SFid_syst.push_back(0.0);	
-							    SFiso.push_back(1.0);
-							    SFiso_stat.push_back(0.0);
-							    SFiso_syst.push_back(0.0);	
-							    SFtth.push_back(1.0);
-							    SFtth_stat.push_back(0.0);
-							    SFtth_syst.push_back(0.0);	
+                                SFid.push_back(1.0);
+                                SFid_stat.push_back(0.0);
+                                SFid_syst.push_back(0.0);	
+                                SFiso.push_back(1.0);
+                                SFiso_stat.push_back(0.0);
+                                SFiso_syst.push_back(0.0);	
+                                SFtth.push_back(1.0);
+                                SFtth_stat.push_back(0.0);
+                                SFtth_syst.push_back(0.0);	
                             }
                         }
                         SFTot["total"].push_back(SF);
