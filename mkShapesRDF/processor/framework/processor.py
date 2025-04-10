@@ -118,12 +118,12 @@ class Processor:
                 }
             except KeyError:
                	d = {
-				    "process": sampleName,
+                    "process": sampleName,
                     "folder": self.Samples[sampleName]["folder"],
                     'isLatino': False
                 }
                 if self.inputFolder != "":
-                    raise RuntimeError(f"When specifying the sample via an input folder for sample {sampleName}, you cannot, at the same time, set an inputFolder")
+                     raise RuntimeError(f"When specifying the sample via an input folder for sample {sampleName}, you cannot, at the same time, set an inputFolder")
                 self.inputFolder = d['folder']
             except KeyError:
                 raise KeyError(f"You need to specify either \"nanoAOD\" or \"folder\" keys for sample {sampleName}")
