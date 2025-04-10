@@ -731,7 +731,7 @@ class LeptonSF(Module):
                         SFTot["iso"].push_back(SFiso_stat);
                         SFTot["iso"].push_back(SFiso_syst);
                         
-						SFTot["tth"].push_back(SFtth);
+                        SFTot["tth"].push_back(SFtth);
                         SFTot["tth"].push_back(SFtth_stat);
                         SFTot["tth"].push_back(SFtth_syst);
                         return SFTot;
