@@ -488,6 +488,7 @@ Steps = {
             "finalSnapshot_DATA",
         ],
     },
+
     "DATAl1loose2023v12__fakeSel": {
         "isChain" : True,
         "do4MC" : False,
@@ -1328,8 +1329,8 @@ Steps = {
         "do4MC"   : True,
         "do4Data" : False,
         "import"  : "mkShapesRDF.processor.modules.JMECalculator",
-        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
-        do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True, isMC=True)',
+        "declare" : 'jmeCalculator = lambda : JMECalculator(jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        year = "RPLME_CMSSW", do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True, isMC=True, sampleName = "RPLME_SAMPLENAME")',
         "module"  : "jmeCalculator()",
     },
 
@@ -1338,8 +1339,8 @@ Steps = {
         "do4MC"   : False,
         "do4Data" : True,
         "import"  : "mkShapesRDF.processor.modules.JMECalculator",
-        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
-        do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=False, store_nominal=True, store_variations=False, isMC=False)',
+        "declare" : 'jmeCalculator = lambda : JMECalculator(jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        year = "RPLME_CMSSW", do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=False, store_nominal=True, store_variations=False, isMC=False, sampleName = "RPLME_SAMPLENAME")',
         "module"  : "jmeCalculator()",
     },
     

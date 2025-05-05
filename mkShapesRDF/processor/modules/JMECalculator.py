@@ -10,9 +10,9 @@ class JMECalculator(Module):
 
     def __init__(
         self,
-        year,
         jet_object,
         jes_unc,
+        year="",
         met_collections=["PuppiMET"],
         do_Jets=True,
         do_MET=True,
@@ -21,6 +21,7 @@ class JMECalculator(Module):
         store_nominal=True,
         store_variations=True,
         isMC = True,
+        sampleName = "",
     ):
         """
         JMECalculator module
@@ -53,6 +54,7 @@ class JMECalculator(Module):
         super().__init__("JMECalculator")
         self.jet_object = jet_object
         self.jes_unc = jes_unc
+        self.year = year
         self.met_collections = met_collections
         self.do_Jets = do_Jets
         self.do_MET = do_MET
@@ -61,6 +63,7 @@ class JMECalculator(Module):
         self.store_nominal = store_nominal
         self.store_variations = store_variations
         self.isMC = isMC 
+        self.sampleName = sampleName
         # The isMC flag is used to denote MC samples and is used as a condition to choose the correct JEC key and to ensure that do_JER is set to True only for MC
 
         # This might be redundant, but I think is useful to have a cross-setting to False for these flags
@@ -73,14 +76,14 @@ class JMECalculator(Module):
         self.JER_era = ""
         self.jsonFileSmearingTool = ""
         
-        if year in JetMakerCfg.keys():
-            self.json = JetMakerCfg[year]["jet_jerc"]
+        if self.year in JetMakerCfg.keys():
+            self.json = JetMakerCfg[self.year]["jet_jerc"]
             if self.isMC:
-                self.JEC_era = JetMakerCfg[year]["JEC"]
+                self.JEC_era = JetMakerCfg[self.year]["JEC"]
             else:
-                self.JEC_era = JetMakerCfg[year]["JEC_data"]
-            self.JER_era = JetMakerCfg[year]["JER"]
-            self.jsonFileSmearingTool = JetMakerCfg[year]["jer_smear"]
+                self.JEC_era = JetMakerCfg[self.year]["JEC_data"]
+            self.JER_era = JetMakerCfg[self.year]["JER"]
+            self.jsonFileSmearingTool = JetMakerCfg[self.year]["jer_smear"]
 
     def runModule(self, df, values):
         ROOT.gInterpreter.Declare(
@@ -110,8 +113,9 @@ class JMECalculator(Module):
         
         jsonFile 	= self.json
         jetAlgo 	= self.jet_object
-        #jecTag  	= self.JEC_era
+        jecTag  	= self.JEC_era
         jes_unc     = self.jes_unc
+        year        = self.year
         jerTag 		= ""
         jsonFileSmearingTool = self.jsonFileSmearingTool
         jecLevel    = "L1L2L3Res"
@@ -124,19 +128,24 @@ class JMECalculator(Module):
         smearingTool= "JERSmear"
         maxDR       = 0.2
         maxDPT      = 3
+        
+        # For 2023 pre-BPix, we have two sets of corrections based on the computing version.
+        # These conditions ensure that the correct set of corrections is applied.
+        if any(v in self.sampleName for v in ["v1", "v2", "v3"]) and not self.isMC and year == 'Full2023v12':
+            jecTag = self.JEC_era[0]
+        elif "v4" in self.sampleName and not self.isMC and year == 'Full2023v12':
+            jecTag = self.JEC_era[1]
 
-        run = df.Take("run")
-        run = run[0]
-        print(self.JEC_era)
+        # The same logic applies for 2022 post-EE data, where the condition is based on the run number.
         if "22EE" in jsonFile and not self.isMC:
-            if run >= 359022 and run <=	360331:
+            if 'Run2022E' in self.sampleName:
                 jecTag = self.JEC_era[0]
-            elif run >= 360332 and run <= 362180:
+            elif 'Run2022F' in self.sampleName:
                 jecTag = self.JEC_era[1]
-            elif run >= 362350 and run <= 362760:
+            elif 'Run2022G' in self.sampleName:
                 jecTag = self.JEC_era[2]
-        else:
-            jecTag = self.JEC_era
+
+        print(f"Final JEC tag: {jecTag}")
         
         if self.do_MET:
             L1JecTag        = "L1FastJet"
@@ -298,6 +307,20 @@ class JMECalculator(Module):
                 cols.append("ROOT::RVecF{}") # GenJet_mass
 
             df = df.Define("jetVars", f'myJetVariationsCalculator.produce({", ".join(cols)})')
+
+            # Define uncorrected and corrected leading pt
+            #df = df.Define("uncorrected_leading_pt", "(CleanJet_pt.size() > 0) ? CleanJet_pt[0] : -999")
+            #df = df.Define("jetVars_pt0", "jetVars.pt(0)")
+            #df = df.Define("corrected_leading_pt", "(jetVars_pt0.size() > 0) ? jetVars_pt0[0] : -999")
+#
+            ## Now collect them (this will collect ALL events, but you can slice after)
+            #uncorrected_leading_pts = df.Take("uncorrected_leading_pt")
+            #corrected_leading_pts = df.Take("corrected_leading_pt")
+
+            # Print only the first 20
+            #for i in range(min(20, len(uncorrected_leading_pts))):
+            #    print(f"Event {i}: uncorrected_pt = {uncorrected_leading_pts[i]}, corrected_pt = {corrected_leading_pts[i]}")
+
 
             if self.store_nominal:
                 df = df.Define("CleanJet_pt", "jetVars.pt(0)")

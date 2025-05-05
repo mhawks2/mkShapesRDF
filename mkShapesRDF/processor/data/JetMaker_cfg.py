@@ -25,8 +25,8 @@ JetMakerCfg = {
         "vetomap": frameworkPath + "/processor/data/jsonpog-integration/POG/JME/2023_Summer23/jetvetomaps.json.gz",
         "vetokey": "Summer23Prompt23_RunC_V1",
 	    "JEC": "Summer23Prompt23_V1_MC",
-        "JEC_data" : "Summer23Prompt23_RunCv123_V1_DATA", #, Summer23Prompt23_RunCv4_V1_DATA"] # I'm not entirely sure which one should we use, I think both (?)
-        "JER": "Summer23Prompt23_RunCv1234_JRV1_MC", # added the v4 #"JER": "Summer23Prompt23_RunCv123_JRV1_MC", ### Why is there another Summer23Prompt23_RunCv4_JR?
+        "JEC_data" : ["Summer23Prompt23_RunCv123_V1_DATA", "Summer23Prompt23_RunCv4_V1_DATA"],
+        "JER": "Summer23Prompt23_RunCv1234_JRV1_MC",
         "jet_jerc" : frameworkPath + "/processor/data/jsonpog-integration/POG/JME/2023_Summer23/jet_jerc.json.gz",
         "jer_smear": frameworkPath + "/processor/data/jsonpog-integration/POG/JME/jer_smear.json.gz",
     },
