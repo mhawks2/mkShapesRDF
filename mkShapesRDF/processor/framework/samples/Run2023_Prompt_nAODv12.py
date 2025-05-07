@@ -61,4 +61,7 @@ Samples["MuonEG_Run2023C-Prompt-v2"] = {
 Samples["MuonEG_Run2023C-Prompt-v3"] = {
     "nanoAOD": '/MuonEG/Run2023C-22Sep2023_v3-v1/NANOAOD'
 }
+Samples["MuonEG_Run2023C-Prompt-v4"] = {
+    "nanoAOD": '/MuonEG/Run2023C-22Sep2023_v4-v1/NANOAOD'
+}
     
