@@ -308,19 +308,6 @@ class JMECalculator(Module):
 
             df = df.Define("jetVars", f'myJetVariationsCalculator.produce({", ".join(cols)})')
 
-            # Define uncorrected and corrected leading pt
-            #df = df.Define("uncorrected_leading_pt", "(CleanJet_pt.size() > 0) ? CleanJet_pt[0] : -999")
-            #df = df.Define("jetVars_pt0", "jetVars.pt(0)")
-            #df = df.Define("corrected_leading_pt", "(jetVars_pt0.size() > 0) ? jetVars_pt0[0] : -999")
-#
-            ## Now collect them (this will collect ALL events, but you can slice after)
-            #uncorrected_leading_pts = df.Take("uncorrected_leading_pt")
-            #corrected_leading_pts = df.Take("corrected_leading_pt")
-
-            # Print only the first 20
-            #for i in range(min(20, len(uncorrected_leading_pts))):
-            #    print(f"Event {i}: uncorrected_pt = {uncorrected_leading_pts[i]}, corrected_pt = {corrected_leading_pts[i]}")
-
 
             if self.store_nominal:
                 df = df.Define("CleanJet_pt", "jetVars.pt(0)")
