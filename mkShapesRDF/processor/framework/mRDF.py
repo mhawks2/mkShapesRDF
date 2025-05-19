@@ -580,7 +580,3 @@ class mRDF:
         c = self.Copy()
         c.df = c.df.Alias(alias, colName)
         return c
-
-    def Take(self, column):
-        col_type = self.df.GetColumnType(column)
-        return self.df.Take[col_type](column).GetValue()
