@@ -1165,6 +1165,22 @@ Steps = {
         ],
     },
 
+##### testrecipes ####
+    "testrecipes": {
+        "isChain": True,
+        "do4MC": True,
+        "do4Data": False,
+        "selection": '"((nElectron+nMuon)>=0)"',
+        "subTargets": [
+            "leptonMaker_nofilter",
+            "lepFiller_tthMVA",
+            "lepSel_testrecipes",
+            "trigMC",
+            "leptonSF",
+            "finalSnapshot_MC"
+        ]
+    },
+
     ########################
     ### Individual steps ###
     ########################
@@ -1175,6 +1191,15 @@ Steps = {
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonMaker",
         "declare": "leptonMaker = lambda : LeptonMaker()",
+        "module": "leptonMaker()",
+    },
+
+    "leptonMaker_nofilter": {
+        "isChain": False,
+        "do4MC": True,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.LeptonMaker",
+        "declare": "leptonMaker = lambda : LeptonMaker(min_lep_pt=0.)",
         "module": "leptonMaker()",
     },
 
@@ -1203,6 +1228,15 @@ Steps = {
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonSel",
         "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW")',
+        "module": "leptonSel()",
+    },
+
+        "lepSel_testrecipes":{
+        "isChain": False,
+        "do4MC": True,
+        "do4Data": True,
+        "import": "mkShapesRDF.processor.modules.LeptonSel",
+        "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW", False)',
         "module": "leptonSel()",
     },
     
