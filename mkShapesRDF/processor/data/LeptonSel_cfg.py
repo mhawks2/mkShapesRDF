@@ -588,7 +588,7 @@ MuonWP = {
         },
         # ------------
         "TightObjWP": {
-            "cut_Tight_HWW": {
+            "cut_Tight_HWWW": {
                 "cuts": {
                     # Common cuts
                     "ROOT::RVecB (Muon_pt.size(), true)": [
