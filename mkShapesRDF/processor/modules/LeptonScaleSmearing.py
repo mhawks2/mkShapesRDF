@@ -89,6 +89,7 @@ class LeptonScaleSmearing(Module):
                                                RVecF Electron_seedGain,
                                                RVecF Electron_r9,
                                                RVecI Lepton_electronIdx,
+                                               RVecF Electron_deltaEtaSC,
                                                float run,
                                                float PV_x, float PV_y, float PV_z,
                                                bool is_data)
@@ -114,7 +115,7 @@ class LeptonScaleSmearing(Module):
                             }
                             else if (abs(Lepton_pdgId[i])==11)
                             {
-                                float sc_eta = scEta(Lepton_eta[i], Lepton_phi[i], PV_x, PV_y, PV_z);
+                                float sc_eta = Lepton_eta[i] + Electron_deltaEtaSC[Lepton_electronIdx[i]];
                                 Lepton_newPt[i] = ele_scale(run, sc_eta, Electron_r9[Lepton_electronIdx[i]], Lepton_pt[i], (float)Electron_seedGain[Lepton_electronIdx[i]]);
 
                             }
@@ -135,7 +136,7 @@ class LeptonScaleSmearing(Module):
                             }
                             else if (abs(Lepton_pdgId[i])==11)
                             {
-                                double sc_eta = scEta(Lepton_eta[i], Lepton_phi[i], PV_x, PV_y, PV_z);
+                                float sc_eta = Lepton_eta[i] + Electron_deltaEtaSC[Lepton_electronIdx[i]];
                                 double random_number = rng.Gaus(0.0, 1.0);
                                 Lepton_newPt[i] = ele_smear(Lepton_pt[i], Electron_r9[Lepton_electronIdx[i]], sc_eta, random_number);
                                 Lepton_newPt_ScaleUp[i] = ele_unc_scale(run, sc_eta, Electron_r9[Lepton_electronIdx[i]], Lepton_pt[i], (float)Electron_seedGain[Lepton_electronIdx[i]], Lepton_newPt[i], "up");
@@ -202,7 +203,7 @@ class LeptonScaleSmearing(Module):
         print(isData)
         df = df.Define(
             "Lepton_ScaleSmearing",
-            f"doLeptonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers,  Electron_seedGain, Electron_r9, Lepton_electronIdx, run, PV_x, PV_y, PV_z, {isData})"
+            f"doLeptonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers,  Electron_seedGain, Electron_r9, Lepton_electronIdx, Electron_deltaEtaSC, run, PV_x, PV_y, PV_z, {isData})"
         )
 
         df = df.Define(
