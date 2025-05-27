@@ -267,7 +267,7 @@ class LeptonSF(Module):
 
                                 if (pt< 20){
                                     pt = ROOT::VecOps::Min(ROOT::RVecF{pt, 19.99});
-                                    if (year>2022){
+                                    if (year==2023){
                                         sf     = cset_electron_Reco->evaluate({Egamma_era, "sf", "RecoBelow20", eta, pt, phi});
                                         sfup   = cset_electron_Reco->evaluate({Egamma_era, "sfup", "RecoBelow20", eta, pt, phi});
                                         sfdown = cset_electron_Reco->evaluate({Egamma_era, "sfdown", "RecoBelow20", eta, pt, phi});
@@ -278,7 +278,7 @@ class LeptonSF(Module):
                                     }
                                 }else if (pt>=20.0 && pt<=75.0){
                                     pt = ROOT::VecOps::Max(ROOT::RVecF{ROOT::VecOps::Min(ROOT::RVecF{pt, 74.99}), 20.0001});
-                                    if (year>2022){
+                                    if (year==2023){
                                         sf     = cset_electron_Reco->evaluate({Egamma_era, "sf", "Reco20to75", eta, pt, phi});
                                         sfup   = cset_electron_Reco->evaluate({Egamma_era, "sfup", "Reco20to75", eta, pt, phi});
                                         sfdown = cset_electron_Reco->evaluate({Egamma_era, "sfdown", "Reco20to75", eta, pt, phi});
@@ -289,7 +289,7 @@ class LeptonSF(Module):
                                     }
                                 }else{
                                     pt = ROOT::VecOps::Max(ROOT::RVecF{pt, 75.001});
-                                    if (year>2022){
+                                    if (year==2023){
                                         sf     = cset_electron_Reco->evaluate({Egamma_era, "sf", "RecoAbove75", eta, pt, phi});
                                         sfup   = cset_electron_Reco->evaluate({Egamma_era, "sfup", "RecoAbove75", eta, pt, phi});
                                         sfdown = cset_electron_Reco->evaluate({Egamma_era, "sfdown", "RecoAbove75", eta, pt, phi});
@@ -356,7 +356,7 @@ class LeptonSF(Module):
                     """
 
                     if "POG" in wp:
-                        if int(self.year) > 2022 :
+                        if int(self.year) == 2023 :
                             evaluator += f""" 
                             sf     = cset_electron_{wp}_wpSF->evaluate({{"{egamma_era}", "sf", "{label}", eta+detasc, pt, phi}});
                             sfup   = cset_electron_{wp}_wpSF->evaluate({{"{egamma_era}", "sfup", "{label}", eta+detasc, pt, phi}});

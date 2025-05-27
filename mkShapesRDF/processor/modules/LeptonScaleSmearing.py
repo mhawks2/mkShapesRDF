@@ -91,7 +91,6 @@ class LeptonScaleSmearing(Module):
                                                RVecI Lepton_electronIdx,
                                                RVecF Electron_deltaEtaSC,
                                                float run,
-                                               float PV_x, float PV_y, float PV_z,
                                                bool is_data)
                 {
                     
@@ -203,7 +202,7 @@ class LeptonScaleSmearing(Module):
         print(isData)
         df = df.Define(
             "Lepton_ScaleSmearing",
-            f"doLeptonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers,  Electron_seedGain, Electron_r9, Lepton_electronIdx, Electron_deltaEtaSC, run, PV_x, PV_y, PV_z, {isData})"
+            f"doLeptonScale(Lepton_pt, Lepton_phi, Lepton_eta, Muon_charge, Lepton_pdgId, Lepton_muonIdx, Muon_nTrackerLayers,  Electron_seedGain, Electron_r9, Lepton_electronIdx, Electron_deltaEtaSC, run, {isData})"
         )
 
         df = df.Define(
