@@ -311,7 +311,7 @@ class JMECalculator(Module):
 
             df = df.Define("jetVars", f'myJetVariationsCalculator.produce({", ".join(cols)})')
 
-            if self.isMC:
+            if "TTTo2L2Nu_10k_nano" == self.sampleName: # the sample name used for recipe is "TTTo2L2Nu_10k_nano" so this condition is basically saying if isrecipe:...
                 cols_recipe = []
 
                 cols_recipe.append("Jet_pt")
@@ -338,8 +338,6 @@ class JMECalculator(Module):
                 cols_recipe.append("GenJet_mass")
 
                 df = df.Define("jetVarsrecipe", f'myJetVariationsCalculator.produce({", ".join(cols_recipe)})')
-            else:
-                continue
 
             if self.store_nominal:
                 df = df.Define("CleanJet_pt", "jetVars.pt(0)")
@@ -351,7 +349,7 @@ class JMECalculator(Module):
                 df = df.Define("CleanJet_phi", "Take( CleanJet_phi, CleanJet_sorting)")
                 df = df.Define("CleanJet_mass", "Take( CleanJet_mass, CleanJet_sorting)")
                 df = df.Define("CleanJet_jetIdx", "Take( CleanJet_jetIdx, CleanJet_sorting)")
-                if self.isMC:
+                if "TTTo2L2Nu_10k_nano" == self.sampleName: # the sample name used for recipe is "TTTo2L2Nu_10k_nano" so this condition is basically saying if isrecipe:...
                     df = df.Define("Jet_pt_recipe", "jetVarsrecipe.pt(0)")
                     df = df.Define("Jet_mass_recipe", "jetVarsrecipe.mass(0)")
                 
