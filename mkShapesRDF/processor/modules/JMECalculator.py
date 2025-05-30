@@ -311,20 +311,20 @@ class JMECalculator(Module):
 
             df = df.Define("jetVars", f'myJetVariationsCalculator.produce({", ".join(cols)})')
 
-            cols_recipe = []
-
-            cols_recipe.append("Jet_pt")
-            cols_recipe.append("Jet_eta")
-            cols_recipe.append("Jet_phi")
-            cols_recipe.append("Jet_mass")
-            cols_recipe.append("Jet_rawFactor")
-            cols_recipe.append("Jet_area")
-            cols_recipe.append("Jet_jetId")
-
-            # rho
-            cols_recipe.append("Rho_fixedGridRhoFastjetAll")
-
             if self.isMC:
+                cols_recipe = []
+
+                cols_recipe.append("Jet_pt")
+                cols_recipe.append("Jet_eta")
+                cols_recipe.append("Jet_phi")
+                cols_recipe.append("Jet_mass")
+                cols_recipe.append("Jet_rawFactor")
+                cols_recipe.append("Jet_area")
+                cols_recipe.append("Jet_jetId")
+
+                # rho
+                cols_recipe.append("Rho_fixedGridRhoFastjetAll")
+
                 cols_recipe.append("Jet_genJetIdx")
                 cols_recipe.append("Jet_partonFlavour")
 
@@ -337,7 +337,9 @@ class JMECalculator(Module):
                 cols_recipe.append("GenJet_phi")
                 cols_recipe.append("GenJet_mass")
 
-            df = df.Define("jetVarsrecipe", f'myJetVariationsCalculator.produce({", ".join(cols_recipe)})')
+                df = df.Define("jetVarsrecipe", f'myJetVariationsCalculator.produce({", ".join(cols_recipe)})')
+            else:
+                continue
 
             if self.store_nominal:
                 df = df.Define("CleanJet_pt", "jetVars.pt(0)")
@@ -349,9 +351,9 @@ class JMECalculator(Module):
                 df = df.Define("CleanJet_phi", "Take( CleanJet_phi, CleanJet_sorting)")
                 df = df.Define("CleanJet_mass", "Take( CleanJet_mass, CleanJet_sorting)")
                 df = df.Define("CleanJet_jetIdx", "Take( CleanJet_jetIdx, CleanJet_sorting)")
-
-                df = df.Define("Jet_pt_recipe", "jetVarsrecipe.pt(0)")
-                df = df.Define("Jet_mass_recipe", "jetVarsrecipe.mass(0)")
+                if self.isMC:
+                    df = df.Define("Jet_pt_recipe", "jetVarsrecipe.pt(0)")
+                    df = df.Define("Jet_mass_recipe", "jetVarsrecipe.mass(0)")
                 
             else:
                 df = df.Define("CleanJet_sorting", "Range(CleanJet_pt.size())")
