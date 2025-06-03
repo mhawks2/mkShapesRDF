@@ -159,14 +159,6 @@ Productions = {
         "xsFile": "../framework/samples/samplesCrossSections_13p6TeV.py",
         "YRver": ["YR4", "13p6TeV"],
     },
-    "Summer22EE_130x_nAODv12_Full2022v12_testrecipes": {
-        "isData": False,
-        "samples": "../framework/samples/Summer22EE_130x_nAODv12_testrecipes.py",
-        "cmssw": "Full2022EEv12",
-        "year": "2022",
-        "xsFile": "../framework/samples/samplesCrossSections_13p6TeV.py",
-        "YRver": ["YR4", "13p6TeV"],
-    },
     # ------- 2024 MC Summer24 v15
     "Summer24_150x_nAODv15_Full2024v15": {
         "isData": False,

@@ -48,7 +48,7 @@ Steps = {
             "puW",
             "formulasMC",
             "l2tight",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "l3Kin",
@@ -83,7 +83,7 @@ Steps = {
             "puW",
             "formulasMC",
             "fakeSel",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "finalSnapshot_MC",
@@ -149,6 +149,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -230,6 +231,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -269,7 +271,7 @@ Steps = {
             "puW",
             "formulasMC",
             "l2tight",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "l3Kin",
@@ -369,6 +371,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMaskFilter",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -474,6 +477,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -484,6 +488,7 @@ Steps = {
             "finalSnapshot_DATA",
         ],
     },
+
     "DATAl1loose2023v12__fakeSel": {
         "isChain" : True,
         "do4MC" : False,
@@ -553,6 +558,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -590,7 +596,7 @@ Steps = {
             "puW",
             "formulasMC",
             "l2tight",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "l3Kin",
@@ -624,7 +630,7 @@ Steps = {
             "puW",
             "formulasMC",
             "fakeSel",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "finalSnapshot_MC",
@@ -690,6 +696,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -731,6 +738,7 @@ Steps = {
             "lepFiller_tthMVA",
             "lepSel",
             "jetSelMask",
+            "JES_modules_DATA",
             "leptonScale_data",
             "l2Kin",
             "l3Kin",
@@ -806,7 +814,7 @@ Steps = {
             "puW",
             "formulasMC",
             "l2tight",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "l3Kin",
@@ -840,7 +848,7 @@ Steps = {
             "puW",
             "formulasMC",
             "fakeSel",
-            "JES_modules",
+            "JES_modules_MC",
             "leptonScale_mc",
             "l2Kin",
             "finalSnapshot_MC",
@@ -1084,7 +1092,7 @@ Steps = {
             "trigMC",
             "leptonSF",
             "puW",
-            "JES_modules",
+            "JES_modules_MC",
             "l2Kin",
             "formulasMC",
             "l2tight",
@@ -1133,7 +1141,7 @@ Steps = {
             "trigMC",
             "leptonSF",
             "puW",
-            "JES_modules",
+            "JES_modules_MC",
             "l2Kin",
             "formulasMC",
             "l2tight",
@@ -1218,7 +1226,7 @@ Steps = {
         "do4Data": False,
         "subTargets": [
             "baseW",
-            # "JES_modules_18UL",
+            # "JES_modules_MC_18UL",
             # "JERsMCUL",
             # # "FatJERsMCUL",
             "btagPerJet_DeepCSV_2018UL",
@@ -1256,6 +1264,22 @@ Steps = {
         ],
     },
 
+##### testrecipes ####
+    "testrecipes": {
+        "isChain": True,
+        "do4MC": True,
+        "do4Data": False,
+        "selection": '"((nElectron+nMuon)>=0)"',
+        "subTargets": [
+            "leptonMaker_nofilter",
+            "lepFiller_tthMVA",
+            "lepSel_testrecipes",
+            "trigMC",
+            "leptonSF",
+            "finalSnapshot_MC"
+        ]
+    },
+
     ########################
     ### Individual steps ###
     ########################
@@ -1268,6 +1292,8 @@ Steps = {
         "declare": "leptonMaker = lambda : LeptonMaker()",
         "module": "leptonMaker()",
     },
+
+
     "leptonMaker_nofilter": {
         "isChain": False,
         "do4MC": True,
@@ -1276,6 +1302,7 @@ Steps = {
         "declare": "leptonMaker = lambda : LeptonMaker(min_lep_pt=0.)",
         "module": "leptonMaker()",
     },
+
     "lepFiller_hwwMVA": {
         "isChain": False,
         "do4MC": True,
@@ -1303,12 +1330,13 @@ Steps = {
         "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW")',
         "module": "leptonSel()",
     },
+
     "lepSel_testrecipes":{
         "isChain": False,
         "do4MC": True,
         "do4Data": True,
         "import": "mkShapesRDF.processor.modules.LeptonSel",
-        "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW", False)',
+        "declare": 'leptonSel = lambda : LeptonSel("Loose", 1, "RPLME_CMSSW", True)',
         "module": "leptonSel()",
     },
     
@@ -1430,13 +1458,23 @@ Steps = {
         "module": "baseW()",
     },
     
-    "JES_modules": {
+    "JES_modules_MC": {
         "isChain" : False,
         "do4MC"   : True,
         "do4Data" : False,
         "import"  : "mkShapesRDF.processor.modules.JMECalculator",
-        "declare" : 'jmeCalculator = lambda : JMECalculator("RPLME_CMSSW", jet_object="AK4PFPuppi", jes_unc=["Total"], \
-        do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True)',
+        "declare" : 'jmeCalculator = lambda : JMECalculator(jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        year = "RPLME_CMSSW", do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=True, store_nominal=True, store_variations=True, isMC=True, sampleName = "RPLME_SAMPLENAME")',
+        "module"  : "jmeCalculator()",
+    },
+
+    "JES_modules_DATA": {
+        "isChain" : False,
+        "do4MC"   : False,
+        "do4Data" : True,
+        "import"  : "mkShapesRDF.processor.modules.JMECalculator",
+        "declare" : 'jmeCalculator = lambda : JMECalculator(jet_object="AK4PFPuppi", jes_unc=["Total"], \
+        year = "RPLME_CMSSW", do_Jets=True, do_MET=True, do_Unclustered=True, met_collections = ["PuppiMET", "MET", "RawMET"],do_JER=False, store_nominal=True, store_variations=False, isMC=False, sampleName = "RPLME_SAMPLENAME")',
         "module"  : "jmeCalculator()",
     },
     
