@@ -365,7 +365,9 @@ def main():
         TClass::Init:0: RuntimeWarning: no dictionary for class edm::ParameterSetBlob is available
         TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessHistory is available
         TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessConfiguration is available
-        TClass::Init:0: RuntimeWarning: no dictionary for class pair<edm::Hash<1>,edm::ParameterSetBlob> is available         
+        TClass::Init:0: RuntimeWarning: no dictionary for class pair<edm::Hash<1>,edm::ParameterSetBlob> is available
+        During startup - Warning message:
+        Setting LC_CTYPE failed, using "C" 
         """
         normalErrs = normalErrs.split("\n")
         normalErrs = list(map(lambda k: k.strip(" ").strip("\t"), normalErrs))
